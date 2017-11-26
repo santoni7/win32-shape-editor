@@ -12,12 +12,15 @@ WCHAR szTitle[MAX_LOADSTRING];                  // Текст строки за�
 WCHAR szWindowClass[MAX_LOADSTRING];            // имя класса главного окна
 ShapeEditorController* controller;
 
+int APIENTRY wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdLine, int nCmdShow);
+
 // Отправить объявления функций, включенных в этот модуль кода:
 ATOM                MyRegisterClass(HINSTANCE hInstance);
 BOOL                InitInstance(HINSTANCE, int);
 LRESULT CALLBACK    WndProc(HWND, UINT, WPARAM, LPARAM);
 INT_PTR CALLBACK    About(HWND, UINT, WPARAM, LPARAM);
-
+HWND				mCreateToolbar(HWND hWndParent);
+HWND hTool;
 int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
                      _In_opt_ HINSTANCE hPrevInstance,
                      _In_ LPWSTR    lpCmdLine,
@@ -32,6 +35,9 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     LoadStringW(hInstance, IDS_APP_TITLE, szTitle, MAX_LOADSTRING);
     LoadStringW(hInstance, IDC_LAB3, szWindowClass, MAX_LOADSTRING);
     MyRegisterClass(hInstance);
+
+
+
 
     // Выполнить инициализацию приложения:
     if (!InitInstance (hInstance, nCmdShow))
@@ -111,6 +117,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
    ShowWindow(hWnd, nCmdShow);
    UpdateWindow(hWnd);
 
+   mCreateToolbar(hWnd);
 
    return TRUE;
 }
@@ -200,6 +207,63 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
     }
     return 0;
 }
+
+HIMAGELIST g_hImageList = NULL;
+
+HWND mCreateToolbar(HWND hWndParent)
+{
+	// Declare and initialize local constants.
+	const int ImageListID = 0;
+	const int numButtons = 3;
+	const int bitmapSize = 16;
+
+	const DWORD buttonStyles = BTNS_AUTOSIZE;
+
+	// Create the toolbar.
+	HWND hWndToolbar = CreateWindowEx(0, TOOLBARCLASSNAME, NULL,
+		WS_CHILD | TBSTYLE_WRAPABLE, 0, 0, 0, 0,
+		hWndParent, NULL, hInst, NULL);
+
+	if (hWndToolbar == NULL)
+		return NULL;
+
+	// Create the image list.
+	g_hImageList = ImageList_Create(bitmapSize, bitmapSize,   // Dimensions of individual bitmaps.
+		ILC_COLOR16 | ILC_MASK,   // Ensures transparent background.
+		numButtons, 0);
+
+	// Set the image list.
+	SendMessage(hWndToolbar, TB_SETIMAGELIST,
+		(WPARAM)ImageListID,
+		(LPARAM)g_hImageList);
+
+	// Load the button images.
+	SendMessage(hWndToolbar, TB_LOADIMAGES,
+		(WPARAM)IDB_STD_SMALL_COLOR,
+		(LPARAM)HINST_COMMCTRL);
+
+	// Initialize button info.
+	// IDM_NEW, IDM_OPEN, and IDM_SAVE are application-defined command constants.
+
+	TBBUTTON tbButtons[numButtons] =
+	{
+		{ MAKELONG(STD_FILENEW,  ImageListID), IDM_ABOUT,  TBSTATE_ENABLED, buttonStyles,{ 0 }, 0, (INT_PTR)L"ABOUT" },
+		{ MAKELONG(STD_FILEOPEN, ImageListID), IDM_EXIT, TBSTATE_ENABLED, buttonStyles,{ 0 }, 0, (INT_PTR)L"EXIT" },
+		{ MAKELONG(HIST_BACK, ImageListID), IDM_SHAPETYPE_ELLIPSE, TBSTATE_ENABLED, buttonStyles,{ 0 }, 0, (INT_PTR)L"ELLIPSE" }
+	};
+
+	// Add buttons.
+	SendMessage(hWndToolbar, TB_BUTTONSTRUCTSIZE, (WPARAM)sizeof(TBBUTTON), 0);
+	SendMessage(hWndToolbar, TB_ADDBUTTONS, (WPARAM)numButtons, (LPARAM)&tbButtons);
+
+	// Resize the toolbar, and then show it.
+	SendMessage(hWndToolbar, TB_AUTOSIZE, 0, 0);
+	ShowWindow(hWndToolbar, TRUE);
+
+	return hWndToolbar;
+}
+
+
 
 // Обработчик сообщений для окна "О программе".
 INT_PTR CALLBACK About(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)

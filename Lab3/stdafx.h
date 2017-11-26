@@ -8,8 +8,10 @@
 #include "targetver.h"
 
 #define WIN32_LEAN_AND_MEAN             // Исключите редко используемые компоненты из заголовков Windows
-// Файлы заголовков Windows:
+// Файлы заголовков Windows: 
 #include <windows.h>
+#pragma comment(lib, "comctl32.lib")
+#include <commctrl.h>
 
 // Файлы заголовков C RunTime
 #include <stdlib.h>

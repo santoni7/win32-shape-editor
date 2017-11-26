@@ -105,3 +105,4 @@ EllipseShape::~EllipseShape()
 //		return new PointShape(p1);
 //	}
 //}
+//Shape::CreateShape(start(), end(), 

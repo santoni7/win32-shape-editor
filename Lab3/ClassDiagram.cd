@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Editor">
+    <Position X="6" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAABAAAAAQIAAAAAACAAA=</HashCode>
+      <FileName>Editor.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EllipseEditor" Collapsed="true">
+    <Position X="8.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAA=</HashCode>
+      <FileName>Editor.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EllipseShape" Collapsed="true">
+    <Position X="4" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAABAAAAAAQAA=</HashCode>
+      <FileName>Shapes.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ShapeEditor">
+    <Position X="6" Y="2.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAASAEAAgAAgAAAAIABAABAAAAAAIABQCAQCBAA=</HashCode>
+      <FileName>Editor.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PointEditor">
+    <Position X="8.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAABAA=</HashCode>
+      <FileName>Editor.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RectEditor" Collapsed="true">
+    <Position X="8.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAABAA=</HashCode>
+      <FileName>Editor.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LineEditor" Collapsed="true">
+    <Position X="8.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAE=</HashCode>
+      <FileName>Editor.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Shape">
+    <Position X="2.75" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAEAABAAgAAAAAAAICAAAARAAEAAAAAgJAAAAAAAAA=</HashCode>
+      <FileName>Shapes.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PointShape">
+    <Position X="4" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAgAAAACAAAAAAAAAABAAAAAAAAA=</HashCode>
+      <FileName>Shapes.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LineShape" Collapsed="true">
+    <Position X="4" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAM=</HashCode>
+      <FileName>Shapes.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RectShape" Collapsed="true">
+    <Position X="4" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgACAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAA=</HashCode>
+      <FileName>Shapes.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ShapeEditorController">
+    <Position X="0.5" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AACAAABAgABAQAggAICAIARQAhAAAABAIIAAAAACAAA=</HashCode>
+      <FileName>shape_editor.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="MLine">
+    <Position X="10.25" Y="6.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAgAAAQAAAAAA=</HashCode>
+      <FileName>Helpers.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="MPoint">
+    <Position X="10.25" Y="4" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAABgAAAAAAA=</HashCode>
+      <FileName>Helpers.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Enum Name="ShapeType">
+    <Position X="10.25" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAEAAAAAAAAAAAAAAAAAABAAAAAAIAAAAAAAA=</HashCode>
+      <FileName>Helpers.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="InputMethod">
+    <Position X="10.25" Y="2.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAQAAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Helpers.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
