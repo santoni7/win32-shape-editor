@@ -43,16 +43,20 @@ IDI_SMALL               ICON                    "small.ico"
 
 IDC_LAB3 MENU
 BEGIN
-    POPUP "File"
+    POPUP "Файл"
     BEGIN
-        MENUITEM "Exit",                        IDM_EXIT
+        MENUITEM "Вийти",                       IDM_EXIT
     END
-    POPUP "Shape type"
+    POPUP "Тип об'єкту"
     BEGIN
-        MENUITEM "Point",                       IDM_SHAPETYPE_POINT
-        MENUITEM "Line",                        IDM_SHAPETYPE_LINE
-        MENUITEM "Rectangle",                   IDM_SHAPETYPE_RECTANGLE
-        MENUITEM "Ellipse",                     IDM_SHAPETYPE_ELLIPSE
+        MENUITEM "Крапка",                      IDM_SHAPETYPE_POINT
+        MENUITEM "Лінія",                       IDM_SHAPETYPE_LINE
+        MENUITEM "Квадрат",                     IDM_SHAPETYPE_RECTANGLE
+        MENUITEM "Еліпс",                       IDM_SHAPETYPE_ELLIPSE
+    END
+    POPUP "Допомога"
+    BEGIN
+        MENUITEM "Про программу",               IDM_ABOUT
     END
 END
 
@@ -64,8 +68,9 @@ END
 
 IDC_LAB3 ACCELERATORS
 BEGIN
-    "?",            IDM_ABOUT,              ASCII,  ALT
-    "/",            IDM_ABOUT,              ASCII,  ALT
+    "/",            IDM_ABOUT,              ASCII,  ALT, NOINVERT
+    "?",            IDM_ABOUT,              ASCII,  ALT, NOINVERT
+    "^Z",           IDM_UNDO,               ASCII,  NOINVERT
 END
 
 
@@ -74,15 +79,15 @@ END
 // Dialog
 //
 
-IDD_ABOUTBOX DIALOGEX 0, 0, 170, 62
+IDD_ABOUTBOX DIALOGEX 0, 0, 221, 63
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
-CAPTION "Рћ Lab3"
+CAPTION "Про програму"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    ICON            IDR_MAINFRAME,IDC_STATIC,14,14,21,20
-    LTEXT           "Lab3, РІРµСЂСЃРёСЏВ 1.0",IDC_STATIC,42,14,114,8,SS_NOPREFIX
-    LTEXT           "(C) 2017В Рі.",IDC_STATIC,42,26,114,8
-    DEFPUSHBUTTON   "РћРљ",IDOK,113,41,50,14,WS_GROUP
+    ICON            32514,IDC_STATIC,14,14,20,20
+    LTEXT           "Лабораторна робота 4 з предмету Об'єктно-орієнтоване програмування",IDC_STATIC,42,14,164,19,SS_NOPREFIX
+    LTEXT           "(C) 2017 Антон Сахнюк, IP-62",IDC_STATIC,41,34,114,8
+    DEFPUSHBUTTON   "Закрити",IDOK,164,42,50,14,WS_GROUP
 END
 
 
@@ -97,9 +102,9 @@ BEGIN
     IDD_ABOUTBOX, DIALOG
     BEGIN
         LEFTMARGIN, 7
-        RIGHTMARGIN, 163
+        RIGHTMARGIN, 214
         TOPMARGIN, 7
-        BOTTOMMARGIN, 55
+        BOTTOMMARGIN, 56
     END
 END
 #endif    // APSTUDIO_INVOKED
@@ -138,13 +143,27 @@ END
 
 /////////////////////////////////////////////////////////////////////////////
 //
+// Bitmap
+//
+
+IDB_PT                  BITMAP                  "pt.bmp"
+
+IDB_ELLIPSE             BITMAP                  "ellipse.bmp"
+
+IDB_LINE                BITMAP                  "line.bmp"
+
+IDB_RECT                BITMAP                  "rect.bmp"
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
 // String Table
 //
 
 STRINGTABLE
 BEGIN
-    IDS_APP_TITLE           "Lab3 | Sakhniuk Anton"
-    IDC_LAB3                "LAB3"
+    IDS_APP_TITLE           "Лабораторна робота 4 | Антон Сахнюк ІП-62"
+    IDC_LAB3                "LAB4"
 END
 
 #endif    // Русский (Россия) resources

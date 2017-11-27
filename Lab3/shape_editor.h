@@ -26,6 +26,6 @@ public:
 	void OnMouseMove() const;
 	void OnPaint() const;
 
-private:
+	void Undo();
 };
 

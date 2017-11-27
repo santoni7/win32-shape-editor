@@ -45,12 +45,22 @@ void ShapeEditorController::OnMouseMove() const
 void ShapeEditorController::OnPaint() const
 {
 	PAINTSTRUCT ps;
-	HDC hdc = BeginPaint(hWnd, &ps);
+	HDC hdc = ::BeginPaint(hWnd, &ps);
 	for (int i = 0; i < cur; ++i) {
 		SHAPES[i]->Render(hdc);
 	}
-	EndPaint(hWnd, &ps);
+	::EndPaint(hWnd, &ps);
 }
+
+void ShapeEditorController::Undo()
+{
+	if(cur>0)
+	{
+		cur--;
+		::InvalidateRect(hWnd, nullptr, true);
+	}
+}
+
 
 void ShapeEditorController::DrawRubberBand() const
 {

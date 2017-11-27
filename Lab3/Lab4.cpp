@@ -2,7 +2,7 @@
 //
 
 #include "stdafx.h"
-#include "Lab3.h"
+#include "Lab4.h"
 #include "shape_editor.h"
 #define MAX_LOADSTRING 100
 
@@ -20,6 +20,7 @@ BOOL                InitInstance(HINSTANCE, int);
 LRESULT CALLBACK    WndProc(HWND, UINT, WPARAM, LPARAM);
 INT_PTR CALLBACK    About(HWND, UINT, WPARAM, LPARAM);
 HWND				mCreateToolbar(HWND hWndParent);
+HBITMAP				LoadMyBitmap();
 HWND hTool;
 int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
                      _In_opt_ HINSTANCE hPrevInstance,
@@ -29,7 +30,6 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     UNREFERENCED_PARAMETER(hPrevInstance);
     UNREFERENCED_PARAMETER(lpCmdLine);
 
-    // TODO: разместите код здесь.
 
     // Инициализация глобальных строк
     LoadStringW(hInstance, IDS_APP_TITLE, szTitle, MAX_LOADSTRING);
@@ -157,7 +157,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 			case IDM_SHAPETYPE_POINT:
 				controller->SetShapeType(ST_POINT);
 				controller->SetOutlineColor(RGB(0, 0, 0));
-				SetWindowText(hWnd, L"Shape type: POINT");
+				SetWindowText(hWnd, L"Тип об'єкту: Крапка");
 				break;
 			case IDM_SHAPETYPE_LINE:
 				controller->SetShapeType(ST_LINE);
@@ -185,6 +185,9 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             case IDM_EXIT:
                 DestroyWindow(hWnd);
                 break;
+			case IDM_UNDO:
+				controller->Undo();
+				break;
             default:
                 return DefWindowProc(hWnd, message, wParam, lParam);
             }
@@ -214,42 +217,57 @@ HWND mCreateToolbar(HWND hWndParent)
 {
 	// Declare and initialize local constants.
 	const int ImageListID = 0;
-	const int numButtons = 3;
-	const int bitmapSize = 16;
+	const int numButtons = 4;
+	const int bitmapSize = 32;
 
-	const DWORD buttonStyles = BTNS_AUTOSIZE;
+	const DWORD buttonStyles = TBSTYLE_BUTTON;// BTNS_AUTOSIZE;
 
 	// Create the toolbar.
 	HWND hWndToolbar = CreateWindowEx(0, TOOLBARCLASSNAME, NULL,
-		WS_CHILD | TBSTYLE_WRAPABLE, 0, 0, 0, 0,
+		WS_CHILD | TBSTYLE_WRAPABLE | TBSTYLE_TOOLTIPS, 0, 0, 0, 0,
 		hWndParent, NULL, hInst, NULL);
 
 	if (hWndToolbar == NULL)
 		return NULL;
 
-	// Create the image list.
-	g_hImageList = ImageList_Create(bitmapSize, bitmapSize,   // Dimensions of individual bitmaps.
-		ILC_COLOR16 | ILC_MASK,   // Ensures transparent background.
-		numButtons, 0);
+	//// Create the image list.
+	//g_hImageList = ImageList_Create(bitmapSize, bitmapSize,   // Dimensions of individual bitmaps.
+	//	ILC_COLOR16 | ILC_MASK,   // Ensures transparent background.
+	//	numButtons, 0);
+
+
+	HIMAGELIST hImageList = ImageList_LoadBitmap(hInst, MAKEINTRESOURCEW(IDB_PT), 32, 0, RGB(255, 0, 255));
+	ImageList_Add(hImageList, LoadBitmap(hInst, MAKEINTRESOURCE(IDB_LINE)), NULL);
+	ImageList_Add(hImageList, LoadBitmap(hInst, MAKEINTRESOURCE(IDB_RECT)), NULL);
+	ImageList_Add(hImageList, LoadBitmap(hInst, MAKEINTRESOURCE(IDB_ELLIPSE)), NULL);
+
+
 
 	// Set the image list.
 	SendMessage(hWndToolbar, TB_SETIMAGELIST,
-		(WPARAM)ImageListID,
-		(LPARAM)g_hImageList);
+		0,//(WPARAM)ImageListID,
+		(LPARAM)hImageList);
 
 	// Load the button images.
 	SendMessage(hWndToolbar, TB_LOADIMAGES,
 		(WPARAM)IDB_STD_SMALL_COLOR,
 		(LPARAM)HINST_COMMCTRL);
 
+
+	SendMessage(hWndToolbar, TB_SETMAXTEXTROWS,
+		(WPARAM)0, 0);
+
+	//TB_SETMAXTEXTROWS
+
 	// Initialize button info.
 	// IDM_NEW, IDM_OPEN, and IDM_SAVE are application-defined command constants.
 
 	TBBUTTON tbButtons[numButtons] =
 	{
-		{ MAKELONG(STD_FILENEW,  ImageListID), IDM_ABOUT,  TBSTATE_ENABLED, buttonStyles,{ 0 }, 0, (INT_PTR)L"ABOUT" },
-		{ MAKELONG(STD_FILEOPEN, ImageListID), IDM_EXIT, TBSTATE_ENABLED, buttonStyles,{ 0 }, 0, (INT_PTR)L"EXIT" },
-		{ MAKELONG(HIST_BACK, ImageListID), IDM_SHAPETYPE_ELLIPSE, TBSTATE_ENABLED, buttonStyles,{ 0 }, 0, (INT_PTR)L"ELLIPSE" }
+		{ 0, IDM_SHAPETYPE_POINT,  TBSTATE_ENABLED, buttonStyles,{ 0 }, 0, (INT_PTR)L"Point" },
+		{ 1, IDM_SHAPETYPE_LINE, TBSTATE_ENABLED, buttonStyles,{ 0 }, 0, (INT_PTR)L"Line" },
+		{ 2, IDM_SHAPETYPE_RECTANGLE, TBSTATE_ENABLED, buttonStyles,{ 0 }, 0, (INT_PTR)L"Rectangle" },
+		{ 3, IDM_SHAPETYPE_ELLIPSE, TBSTATE_ENABLED, buttonStyles,{ 0 }, 0, (INT_PTR)L"Ellipse" }
 	};
 
 	// Add buttons.
@@ -263,7 +281,10 @@ HWND mCreateToolbar(HWND hWndParent)
 	return hWndToolbar;
 }
 
-
+HBITMAP LoadMyBitmap() { 
+	HBITMAP hbmp = LoadBitmap(GetModuleHandle(0), MAKEINTRESOURCE(IDB_ELLIPSE));
+	return hbmp;
+}
 
 // Обработчик сообщений для окна "О программе".
 INT_PTR CALLBACK About(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
