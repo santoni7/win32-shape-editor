@@ -163,6 +163,7 @@ IDB_RECT                BITMAP                  "rect.bmp"
 STRINGTABLE
 BEGIN
     IDS_APP_TITLE           "Лабораторна робота 4 | Антон Сахнюк ІП-62"
+    IDS_STATUS_FMT          "Лабораторна робота 4 | Тип об'єкту: %s"
     IDC_LAB3                "LAB4"
 END
 

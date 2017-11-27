@@ -4,6 +4,7 @@
 #include "stdafx.h"
 #include "Lab4.h"
 #include "shape_editor.h"
+#include "strings.h"
 #define MAX_LOADSTRING 100
 
 // Глобальные переменные:
@@ -36,9 +37,12 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     LoadStringW(hInstance, IDC_LAB3, szWindowClass, MAX_LOADSTRING);
     MyRegisterClass(hInstance);
 
-
-
-
+	/*strings::instance()->init(hInstance);
+	strings::instance()->loadStrings({ 
+		IDS_STATUS_FMT
+	}, {L"status_fmt"});
+*/
+	
     // Выполнить инициализацию приложения:
     if (!InitInstance (hInstance, nCmdShow))
     {
@@ -157,7 +161,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 			case IDM_SHAPETYPE_POINT:
 				controller->SetShapeType(ST_POINT);
 				controller->SetOutlineColor(RGB(0, 0, 0));
-				SetWindowText(hWnd, L"Тип об'єкту: Крапка");
+				SetWindowText(hWnd, L"Shape type: POINT");
 				break;
 			case IDM_SHAPETYPE_LINE:
 				controller->SetShapeType(ST_LINE);

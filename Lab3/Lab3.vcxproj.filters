@@ -42,7 +42,7 @@
     <ClInclude Include="Lab4.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="strings_map.h">
+    <ClInclude Include="strings.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>
@@ -65,7 +65,7 @@
     <ClCompile Include="Lab4.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="strings_map.cpp">
+    <ClCompile Include="strings.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>

@@ -7,6 +7,7 @@
 #define IDS_APP_TITLE                   103
 #define IDD_ABOUTBOX                    103
 #define IDM_ABOUT                       104
+#define IDS_STATUS_FMT                  104
 #define IDM_EXIT                        105
 #define IDI_LAB3                        107
 #define IDI_SMALL                       108
@@ -25,7 +26,6 @@
 #define IDM_SHAPETYPE_RECTANGLE         32776
 #define IDM_SHAPETYPE_ELLIPSE           32777
 #define IDM_UNDO                        32778
-#define IDM_REDO                        32780
 #define IDC_STATIC                      -1
 
 // Next default values for new objects
