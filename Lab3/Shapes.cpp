@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "Shapes.h"
 
+
 // Shape
 void Shape::SetPoints(MPoint p1, MPoint p2) {
 	this->p1 = p1;
@@ -23,8 +24,23 @@ void Shape::SetFillColor(COLORREF color, bool shouldFill)
 
 // PointShape
 void PointShape::Render(HDC hdc) {
-	::SetPixel(hdc, this->p1.x, this->p1.y, this->outlineCol);
+#ifdef SH_POINT_WIDTH
+	const int w = SH_POINT_WIDTH;
+	HBRUSH hBrush = static_cast<HBRUSH>(::CreateSolidBrush(RGB(0,0,0)));
+	HBRUSH hBrushOld = static_cast<HBRUSH>(::SelectObject(hdc, hBrush));
+
+	HPEN hPen = ::CreatePen(PS_SOLID, 1, RGB(0,0,0));
+	HPEN hPenOld = static_cast<HPEN>(::SelectObject(hdc, hPen));
+
+	::Ellipse(hdc, p1.x-w/2, p1.y-w/2, p1.x + w/2, p1.y + w/2);
 	
+	::SelectObject(hdc, hBrushOld);
+	::DeleteObject(hBrush);
+	::SelectObject(hdc, hPenOld);
+	::DeleteObject(hPen);
+#else 
+	::SetPixel(hdc, p1.x, p1.y, fillCol);
+#endif
 }
 PointShape::~PointShape()
 {

@@ -1,7 +1,6 @@
 #pragma once
 #include "Helpers.h"
 #include "Editor.h"
-
 class ShapeEditorController
 {
 	HWND hWnd;

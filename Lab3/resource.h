@@ -9,8 +9,12 @@
 #define IDM_ABOUT                       104
 #define IDS_STATUS_FMT                  104
 #define IDM_EXIT                        105
+#define IDS_POINT                       105
+#define IDS_LINE                        106
 #define IDI_LAB3                        107
+#define IDS_ELLIPSE                     107
 #define IDI_SMALL                       108
+#define IDS_RECTANGLE                   108
 #define IDC_LAB3                        109
 #define IDR_MAINFRAME                   128
 #define IDB_PT                          133

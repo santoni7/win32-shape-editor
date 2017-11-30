@@ -1,6 +1,8 @@
 #pragma once
 #include "stdafx.h"
 #include "Helpers.h"
+#define SH_POINT_WIDTH 4
+
  class Shape {
 protected:
 	MPoint p1, p2;
