@@ -1,7 +1,7 @@
 #pragma once
 #include "stdafx.h"
 
-enum ShapeType { ST_POINT, ST_LINE, ST_ELLIPSE, ST_RECTANGLE };
+enum ShapeType { ST_POINT, ST_LINE, ST_ELLIPSE, ST_RECTANGLE, ST_LINEOO };
 enum InputMethod { IM_CENTERCORNER, IM_CORNERCORNER };
 
 struct MPoint { 

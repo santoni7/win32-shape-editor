@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "Shapes.h"
+#include "DrawController.h"
 
 
 // Shape
@@ -106,19 +107,32 @@ EllipseShape::~EllipseShape()
 { }
 
 
+LineOOShape::LineOOShape(MPoint p1, MPoint p2) : Shape(p1, p2)
+{
+	const float circlePercent = 0.05;
+	MPoint c1_pt1(
+		static_cast<int>(p1.x * circlePercent + p2.x * (1 - circlePercent)),
+		static_cast<int>(p1.y * circlePercent + p2.y * (1 - circlePercent))
+	), c2_pt1(
+		static_cast<int>(p1.x * (1 - circlePercent) + p2.x * circlePercent),
+		static_cast<int>(p1.y * (1 - circlePercent) + p2.y * circlePercent)
+	);
+	MPoint c1_pt2 = MReflectPt(p1, c1_pt1),
+		c2_pt2 = MReflectPt(p2, c2_pt1);
 
-///// Factory static method
-//Shape* Shape::CreateShape(MPoint p1, MPoint p2, ShapeType shapeType, InputMethod inputMethod)
-//{
-//	switch (shapeType) {
-//	case ST_POINT:
-//		return new PointShape(p1);
-//	case ST_RECTANGLE:
-//		return new RectShape(p1, p2);
-//	case ST_ELLIPSE:
-//		return new EllipseShape(p1, p2);
-//	default:
-//		return new PointShape(p1);
-//	}
-//}
-//Shape::CreateShape(start(), end(), 
+	c1 = EllipseShape(c1_pt1, c1_pt2);
+	c2 = EllipseShape(c2_pt1, c2_pt2);
+	ln = LineShape(p1, p2);
+}
+
+void LineOOShape::Render(HDC hdc)
+{
+	ln.Render(hdc);
+	c1.Render(hdc);
+	c2.Render(hdc);
+}
+
+LineOOShape::~LineOOShape()
+{
+	
+}

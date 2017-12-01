@@ -3,15 +3,20 @@
 
 #include "stdafx.h"
 #include "Lab4.h"
-#include "shape_editor.h"
+#include "DrawController.h"
 #include "strings.h"
 #define MAX_LOADSTRING 100
+
+/*
+ * TODO: Resize ToolBar&StatusBar
+ */
+
 
 // Глобальные переменные:
 HINSTANCE hInst; // текущий экземпляр
 WCHAR szTitle[MAX_LOADSTRING]; // Текст строки заголовка
 WCHAR szWindowClass[MAX_LOADSTRING]; // имя класса главного окна
-ShapeEditorController* controller;
+DrawController* controller;
 
 int APIENTRY wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdLine, int nCmdShow);
 void formatWindowText(HWND hWnd, TKEY str_key);
@@ -132,7 +137,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 		return FALSE;
 	}
 
-	controller = new ShapeEditorController(hWnd);
+	controller = new DrawController(hWnd);
 
 
 	ShowWindow(hWnd, nCmdShow);
@@ -190,6 +195,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 			{
 			case IDM_SHAPETYPE_POINT:
 				controller->SetShapeType(ST_POINT);
+				controller->SetInputMethod(IM_CORNERCORNER);
 				controller->SetOutlineColor(RGB(0, 0, 0));
 				formatWindowText(hStatus, "point");
 				break;
