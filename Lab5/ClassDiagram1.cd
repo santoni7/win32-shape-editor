@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="DrawController">
+    <Position X="1" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACABABEAAEABAggAACAIABYABAgAAAAIAAAAAACAAA=</HashCode>
+      <FileName>DrawController.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EllipseShape" Collapsed="true">
+    <Position X="6" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAABAAAAAAQAA=</HashCode>
+      <FileName>Shapes.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LineShape" Collapsed="true">
+    <Position X="6" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAM=</HashCode>
+      <FileName>Shapes.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PointShape">
+    <Position X="6" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAgAAAACAAAAAAAAAABAAAAAAAAA=</HashCode>
+      <FileName>Shapes.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RectShape" Collapsed="true">
+    <Position X="6" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgACAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAA=</HashCode>
+      <FileName>Shapes.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Shape" Collapsed="true">
+    <Position X="4.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAABAAgAAAAAAAICAAAARAAEAAAAAgJAAAAAAAAA=</HashCode>
+      <FileName>Shapes.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LineOOShape">
+    <Position X="6" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAEAAAAAAAAAAAAAAAAIAACAAAAAABBAAAAAAAA=</HashCode>
+      <FileName>Shapes.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InputProcessor" Collapsed="true">
+    <Position X="2.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAAAAAAAAAAAAABAAAAAAIAAAAAACAAA=</HashCode>
+      <FileName>InputProcessor.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MainWindow">
+    <Position X="2.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgEsABAQEIAACAAAAAAoAAIAAQCAAAAA=</HashCode>
+      <FileName>MainWindow.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TwoPointInputProcessor" Collapsed="true">
+    <Position X="2.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACAAAAkAAgAEAAIABAABABAAARIABACAQCAAA=</HashCode>
+      <FileName>InputProcessor.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ShapeFactory" Collapsed="true">
+    <Position X="4.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAA=</HashCode>
+      <FileName>ShapeFactory.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="EditorInfo" Collapsed="true">
+    <Position X="9.5" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAABAAAAAEAAAAIAAAAAAAAAAACAAAIAAAAAAAAA=</HashCode>
+      <FileName>DrawController.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="MLine" Collapsed="true">
+    <Position X="9" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAgAAAQAAAAAA=</HashCode>
+      <FileName>Helpers.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="MPoint" Collapsed="true">
+    <Position X="9" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAABgAAAAAAA=</HashCode>
+      <FileName>Helpers.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Enum Name="InputMethod" Collapsed="true">
+    <Position X="9.5" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAQAAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Helpers.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="ShapeType" Collapsed="true">
+    <Position X="9.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAEAAAAAAAAAAAAAAABAABAAAAAAIAAAAAAAA=</HashCode>
+      <FileName>Helpers.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

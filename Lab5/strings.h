@@ -6,7 +6,7 @@
 #include<strsafe.h>
 typedef const char * TKEY;
 /*
- * Singletone container for string resources for run-time use
+ * Singletone map of winapi-string resources for run-time use
  */
 class strings
 {
@@ -15,8 +15,8 @@ private:
 	int _nextid = 432510; //random value for initializer
 	static strings *_instance;
 	strings();
-	strings(const strings&);
-	strings& operator=(const strings&);
+	strings(const strings&) = delete;
+	strings& operator=(const strings&) = delete;
 
 
 	std::map<TKEY, LPWSTR> m;
@@ -35,7 +35,7 @@ public:
 
 	LPCWSTR get(TKEY key);
 	
-
+	//Load LPWSTR strings from resourses mapped by TKEY 
 	void loadString(UINT uID, TKEY key);
 	void loadStrings(const std::vector<UINT>& stringIDs, const std::vector<TKEY>& keys);
 	void loadStrings(const std::vector<std::pair<TKEY, UINT>> keyValuePairs);

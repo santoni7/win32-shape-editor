@@ -85,8 +85,8 @@ CAPTION "Про програму"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     ICON            32514,IDC_STATIC,14,14,20,20
-    LTEXT           "Лабораторна робота 4 з предмету Об'єктно-орієнтоване програмування",IDC_STATIC,42,14,164,19,SS_NOPREFIX
-    LTEXT           "(C) 2017 Антон Сахнюк, IP-62",IDC_STATIC,41,34,114,8
+    LTEXT           "Лабораторна робота 5 з предмету Об'єктно-орієнтоване програмування",IDC_STATIC,42,14,164,19,SS_NOPREFIX
+    LTEXT           "(C) 2017 Антон Сахнюк, IП-62",IDC_STATIC,41,34,114,8
     DEFPUSHBUTTON   "Закрити",IDOK,164,42,50,14,WS_GROUP
 END
 

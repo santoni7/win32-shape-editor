@@ -149,6 +149,7 @@
   <ItemGroup>
     <ClInclude Include="InputProcessor.h" />
     <ClInclude Include="Lab4.h" />
+    <ClInclude Include="MainWindow.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="ShapeFactory.h" />
     <ClInclude Include="Shapes.h" />
@@ -163,6 +164,7 @@
     <ClCompile Include="Helpers.cpp" />
     <ClCompile Include="Lab5.cpp" />
     <ClCompile Include="DrawController.cpp" />
+    <ClCompile Include="MainWindow.cpp" />
     <ClCompile Include="Shapes.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -192,6 +194,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />
+    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -14,7 +14,7 @@ void strings::init(HINSTANCE hInstance)
 
 strings::~strings()
 {
-	
+	this->m.clear();
 }
 
 
@@ -37,7 +37,11 @@ void strings::loadString(UINT uID, TKEY key)
 void strings::loadStrings(const std::vector<UINT>& stringIDs, const std::vector<TKEY>& keys)
 {
 	auto k_iter = keys.cbegin();
-	for (auto iter = stringIDs.cbegin(); iter != stringIDs.cend() && k_iter != keys.cend(); ++iter, ++k_iter) {
+	for (auto iter = stringIDs.cbegin(); 
+			iter != stringIDs.cend() && k_iter != keys.cend();
+			++iter, ++k_iter
+		) 
+	{
 		loadString(*iter, *k_iter);
 	}
 }
