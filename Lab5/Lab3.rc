@@ -53,6 +53,8 @@ BEGIN
         MENUITEM "Лінія",                       IDM_SHAPETYPE_LINE
         MENUITEM "Квадрат",                     IDM_SHAPETYPE_RECTANGLE
         MENUITEM "Еліпс",                       IDM_SHAPETYPE_ELLIPSE
+        MENUITEM "ОО-лінія",                    IDM_SHAPETYPE_LINEOO
+        MENUITEM "Куб",                         32786
     END
     POPUP "Допомога"
     BEGIN
@@ -71,6 +73,7 @@ BEGIN
     "/",            IDM_ABOUT,              ASCII,  ALT, NOINVERT
     "?",            IDM_ABOUT,              ASCII,  ALT, NOINVERT
     "^Z",           IDM_UNDO,               ASCII,  NOINVERT
+    "^N",           IDM_CLEAR,              ASCII,  NOINVERT
 END
 
 
@@ -154,6 +157,10 @@ IDB_LINE                BITMAP                  "line.bmp"
 
 IDB_RECT                BITMAP                  "rect.bmp"
 
+IDB_LINEOO              BITMAP                  "ellipse1.bmp"
+
+IDB_CUBE                BITMAP                  "lineoo1.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -169,6 +176,13 @@ BEGIN
     IDS_ELLIPSE             "Елліпс"
     IDS_RECTANGLE           "Прямокутник"
     IDC_LAB3                "LAB4"
+    IDS_SHAPECOUNT_FMT      "Кількість об'єктів: %d"
+    IDS_LINEOO              "ОО-Лінія"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_CUBE                "Куб"
 END
 
 #endif    // Русский (Россия) resources

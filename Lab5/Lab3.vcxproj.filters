@@ -13,6 +13,12 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Файлы заголовков\shapes">
+      <UniqueIdentifier>{82add7a0-6428-4925-9754-8a7ba623b135}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\shapes">
+      <UniqueIdentifier>{cc923d1a-da7a-4e23-b62a-e5c780bddd14}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -30,16 +36,10 @@
     <ClInclude Include="Helpers.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="Shapes.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
     <ClInclude Include="Lab4.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="strings.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="ShapeFactory.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="DrawController.h">
@@ -51,15 +51,30 @@
     <ClInclude Include="MainWindow.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
+    <ClInclude Include="shape.h">
+      <Filter>Файлы заголовков\shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="basic_shapes.h">
+      <Filter>Файлы заголовков\shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="LineOOShape.h">
+      <Filter>Файлы заголовков\shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="ShapeFactory.h">
+      <Filter>Файлы заголовков\shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="CubeShape.h">
+      <Filter>Файлы заголовков\shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="all_shapes.h">
+      <Filter>Файлы заголовков\shapes</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
     <ClCompile Include="Helpers.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
-    <ClCompile Include="Shapes.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
     <ClCompile Include="strings.cpp">
@@ -76,6 +91,18 @@
     </ClCompile>
     <ClCompile Include="MainWindow.cpp">
       <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="shape.cpp">
+      <Filter>Исходные файлы\shapes</Filter>
+    </ClCompile>
+    <ClCompile Include="basic_shapes.cpp">
+      <Filter>Исходные файлы\shapes</Filter>
+    </ClCompile>
+    <ClCompile Include="LineOOShape.cpp">
+      <Filter>Исходные файлы\shapes</Filter>
+    </ClCompile>
+    <ClCompile Include="CubeShape.cpp">
+      <Filter>Исходные файлы\shapes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -123,9 +150,16 @@
     <Image Include="rect.bmp">
       <Filter>Файлы ресурсов</Filter>
     </Image>
+    <Image Include="ellipse1.bmp">
+      <Filter>Файлы ресурсов</Filter>
+    </Image>
+    <Image Include="lineoo1.bmp">
+      <Filter>Файлы ресурсов</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />
     <None Include="ClassDiagram1.cd" />
+    <None Include="ClassDiagram2.cd" />
   </ItemGroup>
 </Project>

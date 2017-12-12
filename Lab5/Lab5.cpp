@@ -26,10 +26,13 @@ void initStrings(HINSTANCE hInstance)
 		{"wnd_class_name", IDC_LAB3},
 		{"app_title", IDS_APP_TITLE},
 		{"status_fmt", IDS_STATUS_FMT},
+		{"shape_count_fmt", IDS_SHAPECOUNT_FMT },
 		{"point", IDS_POINT},
 		{"line", IDS_LINE},
 		{"ellipse", IDS_ELLIPSE},
-		{"rect", IDS_RECTANGLE}
+		{"rect", IDS_RECTANGLE},
+		{"lineoo", IDS_LINEOO },
+		{"cube", IDS_CUBE }
 	});
 }
 

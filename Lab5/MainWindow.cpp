@@ -16,9 +16,7 @@ MainWindow::MainWindow(HINSTANCE hInstance)
 ATOM MainWindow::registerWndClass(WNDPROC wndproc)
 {
 	WNDCLASSEXW wcex;
-
 	wcex.cbSize = sizeof(WNDCLASSEX);
-
 	wcex.style = CS_HREDRAW | CS_VREDRAW;
 	wcex.lpfnWndProc = wndproc;
 	wcex.cbClsExtra = 0;
@@ -30,7 +28,6 @@ ATOM MainWindow::registerWndClass(WNDPROC wndproc)
 	wcex.lpszMenuName = MAKEINTRESOURCEW(IDC_LAB3);
 	wcex.lpszClassName = gets("wnd_class_name");
 	wcex.hIconSm = LoadIcon(wcex.hInstance, MAKEINTRESOURCE(IDI_SMALL));
-
 	return RegisterClassExW(&wcex);
 }
 
@@ -39,23 +36,21 @@ BOOL MainWindow::init(int nCmdShow)
 	hWnd = CreateWindowW(gets("wnd_class_name"), gets("app_title"),
 		WS_OVERLAPPEDWINDOW, CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, nullptr, nullptr,
 		hInst, nullptr);
-
 	if (!hWnd)
 	{
 		return FALSE;
 	}
-
 	controller = new DrawController(hWnd);
 
 	hTool = createToolbar();
 
 	const int SB_ID = 1001;
-	hStatus = createStatusBar(SB_ID, 1);
+	hStatus = createStatusBar(SB_ID);
 
 	ShowWindow(hWnd, nCmdShow);
-
 	UpdateWindow(hWnd);
 
+	formatShapeCountText(controller->GetShapesCount());
 	return TRUE;
 }
 
@@ -64,7 +59,7 @@ HWND MainWindow::createToolbar()
 {
 	// Declare and initialize local constants.
 	const int ImageListID = 0;
-	const int numButtons = 4;
+	const int numButtons = 6;
 	const int bitmapSize = 32;
 
 	const DWORD buttonStyles = TBSTYLE_BUTTON;// BTNS_AUTOSIZE;
@@ -83,6 +78,8 @@ HWND MainWindow::createToolbar()
 	ImageList_AddMasked(hImageList, LoadBitmap(hInst, MAKEINTRESOURCE(IDB_LINE)), mask);
 	ImageList_AddMasked(hImageList, LoadBitmap(hInst, MAKEINTRESOURCE(IDB_RECT)), mask);
 	ImageList_AddMasked(hImageList, LoadBitmap(hInst, MAKEINTRESOURCE(IDB_ELLIPSE)), mask);
+	ImageList_AddMasked(hImageList, LoadBitmap(hInst, MAKEINTRESOURCE(IDB_LINEOO)), mask);
+	ImageList_AddMasked(hImageList, LoadBitmap(hInst, MAKEINTRESOURCE(IDB_CUBE)), mask);
 
 
 	// Set the image list.
@@ -115,6 +112,14 @@ HWND MainWindow::createToolbar()
 		{
 			3, IDM_SHAPETYPE_ELLIPSE, TBSTATE_ENABLED, buttonStyles,{0}, 0,
 			reinterpret_cast<INT_PTR>(gets("ellipse"))
+		},
+		{
+			4, IDM_SHAPETYPE_LINEOO, TBSTATE_ENABLED, buttonStyles,{ 0 }, 0,
+			reinterpret_cast<INT_PTR>(gets("lineoo"))
+		},
+		{
+			5, IDM_SHAPETYPE_CUBE, TBSTATE_ENABLED, buttonStyles,{ 0 }, 0,
+			reinterpret_cast<INT_PTR>(gets("cube"))
 		}
 	};
 
@@ -135,18 +140,11 @@ HWND MainWindow::createStatusBar(int sbid, int cParts)
 	InitCommonControls();
 
 	// Create the status bar.
-	HWND hwndStatus = CreateWindowEx(
-		0, // no extended styles
-		STATUSCLASSNAME, // name of status bar class
-		strings::instance()->format("status_fmt", strings::instance()->get("point")), // no text when first created
-		SBARS_SIZEGRIP | // includes a sizing grip
-		WS_CHILD | WS_VISIBLE, // creates a visible child window
-		0, 0, 0, 0, // ignores size and position
-		hWnd, // handle to parent window
-		HMENU(sbid), // child window identifier
-		hInst, // handle to application instance
-		NULL); // no window creation data
-
+	HWND hwndStatus = CreateWindowEx(0,	STATUSCLASSNAME, 
+		strings::instance()->format("status_fmt", strings::instance()->get("point")), 
+		SBARS_SIZEGRIP | WS_CHILD | WS_VISIBLE, 
+		0, 0, 0, 0, 
+		hWnd, HMENU(sbid), hInst, NULL); 
 	// Allocate an array for holding the right edge coordinates.
 	auto hloc = LocalAlloc(LHND, sizeof(int) * cParts);
 	auto sb_paParts = static_cast<PINT>(LocalLock(hloc));
@@ -175,6 +173,34 @@ HWND MainWindow::createStatusBar(int sbid, int cParts)
 	return hwndStatus;
 }
 
+void MainWindow::updateStatusBarSize(int cParts)
+{
+	if (!hWnd) return;
+	RECT rcClient;
+	GetClientRect(hWnd, &rcClient);
+
+
+	// Allocate an array for holding the right edge coordinates.
+	auto hloc = LocalAlloc(LHND, sizeof(int) * cParts);
+	PINT sb_paParts = static_cast<PINT>(LocalLock(hloc));
+
+	// Calculate the right edge coordinate for each part, and
+	// copy the coordinates to the array.
+	int nWidth = rcClient.right / cParts;
+	int rightEdge = nWidth;
+	for (int i = 0; i < cParts; i++)
+	{
+		sb_paParts[i] = rightEdge;
+		rightEdge += nWidth;
+	}
+
+	// Tell the status bar to create the window parts.
+	SendMessage(hStatus, SB_SETPARTS, (WPARAM)cParts, (LPARAM)
+		sb_paParts);
+
+
+}
+
 LRESULT CALLBACK MainWindow::WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
 	switch (message)
@@ -184,6 +210,7 @@ LRESULT CALLBACK MainWindow::WndProc(HWND hWnd, UINT message, WPARAM wParam, LPA
 		break;
 	case WM_LBUTTONUP:
 		controller->OnMouseUp();
+		formatShapeCountText(controller->GetShapesCount());
 		break;
 	case WM_MOUSEMOVE:
 		controller->OnMouseMove();
@@ -198,30 +225,45 @@ LRESULT CALLBACK MainWindow::WndProc(HWND hWnd, UINT message, WPARAM wParam, LPA
 			switch (wmId)
 			{
 			case IDM_SHAPETYPE_POINT:
-				controller->SetShapeType(ST_POINT);
+				controller->Start(ShapeFactory::shape<PointShape>());
 				controller->SetInputMethod(IM_CORNERCORNER);
 				controller->SetOutlineColor(RGB(0, 0, 0));
+				controller->SetFillColor(RGB(0, 0, 0), true);
 				formatWindowText(hStatus, "point");
 				break;
 			case IDM_SHAPETYPE_LINE:
-				controller->SetShapeType(ST_LINE);
+				controller->Start(ShapeFactory::shape<LineShape>());
 				controller->SetInputMethod(IM_CORNERCORNER);
 				controller->SetOutlineColor(RGB(0, 0, 0));
 				formatWindowText(hStatus, "line");
 				break;
 			case IDM_SHAPETYPE_RECTANGLE:
-				controller->SetShapeType(ST_RECTANGLE);
+				controller->Start(ShapeFactory::shape<RectShape>());
 				controller->SetInputMethod(IM_CENTERCORNER);
 				controller->SetOutlineColor(RGB(0, 0, 0));
 				controller->SetFillColor(NULL, false);
 				formatWindowText(hStatus, "rect");
 				break;
 			case IDM_SHAPETYPE_ELLIPSE:
-				controller->SetShapeType(ST_ELLIPSE);
+				controller->Start(ShapeFactory::shape<EllipseShape>());
 				controller->SetInputMethod(IM_CORNERCORNER);
 				controller->SetOutlineColor(RGB(0, 0, 0));
 				controller->SetFillColor(RGB(255, 165, 0), true);
 				formatWindowText(hStatus, "ellipse");
+				break;
+			case IDM_SHAPETYPE_LINEOO:
+				controller->Start(ShapeFactory::shape<LineOOShape>());
+				controller->SetInputMethod(IM_CORNERCORNER);
+				controller->SetOutlineColor(RGB(0, 0, 0));
+				controller->SetFillColor(RGB(30, 165, 160), true);
+				formatWindowText(hStatus, "lineoo");
+				break;
+			case IDM_SHAPETYPE_CUBE:
+				controller->Start(ShapeFactory::shape<CubeShape>());
+				controller->SetInputMethod(IM_CORNERCORNER);
+				controller->SetOutlineColor(RGB(0, 0, 0));
+				controller->SetFillColor(NULL, false);
+				formatWindowText(hStatus, "cube");
 				break;
 			case IDM_ABOUT:
 				DialogBox(hInst, MAKEINTRESOURCE(IDD_ABOUTBOX), hWnd, AboutDlgProc);
@@ -242,6 +284,7 @@ LRESULT CALLBACK MainWindow::WndProc(HWND hWnd, UINT message, WPARAM wParam, LPA
 		PostQuitMessage(0);
 		break;
 	case WM_SIZE:
+		updateStatusBarSize();
 		if (hTool) SendMessage(hTool, WM_SIZE, 0, 0);
 		if (hStatus) SendMessage(hStatus, WM_SIZE, 0, 0);
 		break;
@@ -278,7 +321,12 @@ LPCWSTR MainWindow::gets(TKEY key)
 
 void MainWindow::formatWindowText(HWND hWnd, TKEY str_key)
 {
-	::SetWindowTextW(hWnd, strings::instance()->format("status_fmt", gets(str_key)));
+	::SendMessage(hStatus, SB_SETTEXT, 0, (LPARAM)strings::instance()->format("status_fmt", gets(str_key)));
+}
+
+void MainWindow::formatShapeCountText(int count) 
+{
+	::SendMessage(hStatus, SB_SETTEXT, 1, (LPARAM)strings::instance()->format("shape_count_fmt", count));
 }
 
 MainWindow::~MainWindow()

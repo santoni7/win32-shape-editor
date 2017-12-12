@@ -1,7 +1,7 @@
 #pragma once
 #include "stdafx.h"
 #include "Helpers.h"
-#include "Shapes.h"
+//#include "shape.h"
 #include <type_traits>
 
 class InputProcessor {
@@ -36,67 +36,3 @@ public:
 	void OnMouseMove() override;
 	void OnMouseUp() override;
 };
-//
-//class LineEditor : public TwoPointInputProcessor
-//{
-//public:
-//	LineEditor(HWND hWnd) : TwoPointInputProcessor(hWnd) { }
-//	Shape* shape() const override
-//	{
-//		MPoint startp = start();
-//		MPoint endp = end();
-//		if (im == IM_CENTERCORNER)
-//			startp = MReflectPt(start(), end());
-//		return new LineShape(startp, endp);
-//	}
-//};
-//
-//class PointEditor : public TwoPointInputProcessor
-//{
-//public:
-//	PointEditor(HWND hWnd) : TwoPointInputProcessor(hWnd) { }
-//	Shape* shape() const override
-//	{
-//		return new PointShape(end());
-//	}
-//};
-//
-//
-//class RectEditor : public TwoPointInputProcessor
-//{
-//public:
-//	RectEditor(HWND hWnd) : TwoPointInputProcessor(hWnd) { }
-//	Shape* shape() const override
-//	{
-//		MPoint startp = start();
-//		MPoint endp = end();
-//		if (im == IM_CENTERCORNER)
-//			startp = MReflectPt(start(), end());
-//		return new RectShape(startp, endp);
-//	}
-//	~RectEditor() {}
-//};
-//
-//class EllipseEditor : public TwoPointInputProcessor
-//{
-//public:
-//	EllipseEditor(HWND hWnd) : TwoPointInputProcessor(hWnd) { }
-//	Shape* shape() const override
-//	{
-//		MPoint startp = start();
-//		MPoint endp = end();
-//		if (im == IM_CENTERCORNER)
-//			startp = MReflectPt(start(), end());
-//		return new EllipseShape(startp, endp);
-//	}
-//	~EllipseEditor() {}
-//};
-//class LineOOEditor : public TwoPointInputProcessor
-//{
-//public:
-//	LineOOEditor(HWND hWnd) : TwoPointInputProcessor(hWnd) {}
-//	Shape* shape() const override
-//	{
-//		return new LineOOShape(start(), end());
-//	}
-//};

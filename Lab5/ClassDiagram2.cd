@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="CubeShape" Collapsed="true">
+    <Position X="11.5" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAACAAAAQAAAAAAAQAAEAAAAAAAAAAAAAQA=</HashCode>
+      <FileName>CubeShape.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EllipseShape" Collapsed="true">
+    <Position X="11.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAQQA=</HashCode>
+      <FileName>basic_shapes.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LineShape" Collapsed="true">
+    <Position X="11.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQM=</HashCode>
+      <FileName>basic_shapes.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PointShape" Collapsed="true">
+    <Position X="11.5" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAgAAAACAAAAAAAAAAAAAAAAAAQA=</HashCode>
+      <FileName>basic_shapes.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RectShape" Collapsed="true">
+    <Position X="11.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQA=</HashCode>
+      <FileName>basic_shapes.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Shape" Collapsed="true">
+    <Position X="9.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAABAAgAAAAAABICAAgARAAEAAAAAgJAAAQAAAQA=</HashCode>
+      <FileName>shape.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ShapeFactory" Collapsed="true">
+    <Position X="7.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAA=</HashCode>
+      <FileName>ShapeFactory.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DrawController">
+    <Position X="3" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACABAAEAAUABAggAACAIABYABAgAAAAIAAAAAACAAA=</HashCode>
+      <FileName>DrawController.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MainWindow">
+    <Position X="1" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgEsABCQEIAACAAAABAoAIIAAQCAAAAA=</HashCode>
+      <FileName>MainWindow.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InputProcessor">
+    <Position X="5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAAAAAAAAAAAAABAAAAAAIAAAAAACAAA=</HashCode>
+      <FileName>InputProcessor.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LineOOShape" Collapsed="true">
+    <Position X="11.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAEAAAAAAAAAAACAAAAYAACAAAAAABBAAAAAAQA=</HashCode>
+      <FileName>LineOOShape.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TwoPointInputProcessor">
+    <Position X="5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACAAAAkAAgAEAAIABAABABAAARIABACAQCAAA=</HashCode>
+      <FileName>InputProcessor.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="MPoint">
+    <Position X="7.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAABgAAAAAAA=</HashCode>
+      <FileName>Helpers.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Enum Name="InputMethod">
+    <Position X="7.5" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAQAAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Helpers.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="ShapeType">
+    <Position X="7.5" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAEAAAAAAAAAAAAAAABAARAAAAAAIAAAAAAAA=</HashCode>
+      <FileName>Helpers.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
