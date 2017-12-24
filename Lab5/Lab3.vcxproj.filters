@@ -19,6 +19,9 @@
     <Filter Include="Исходные файлы\shapes">
       <UniqueIdentifier>{cc923d1a-da7a-4e23-b62a-e5c780bddd14}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Файлы заголовков\CustomTable">
+      <UniqueIdentifier>{782c8de6-e074-472a-ba45-4c13ae885a56}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -69,6 +72,15 @@
     <ClInclude Include="all_shapes.h">
       <Filter>Файлы заголовков\shapes</Filter>
     </ClInclude>
+    <ClInclude Include="resource1.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="CustomTable.h">
+      <Filter>Файлы заголовков\CustomTable</Filter>
+    </ClInclude>
+    <ClInclude Include="TableDialog.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -78,9 +90,6 @@
       <Filter>Исходные файлы</Filter>
     </ClCompile>
     <ClCompile Include="strings.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
-    <ClCompile Include="Lab5.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
     <ClCompile Include="DrawController.cpp">
@@ -104,9 +113,21 @@
     <ClCompile Include="CubeShape.cpp">
       <Filter>Исходные файлы\shapes</Filter>
     </ClCompile>
+    <ClCompile Include="CustomTable.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="TableDialog.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Lab3.rc">
+      <Filter>Файлы ресурсов</Filter>
+    </ResourceCompile>
+    <ResourceCompile Include="Lab5.rc">
       <Filter>Файлы ресурсов</Filter>
     </ResourceCompile>
   </ItemGroup>

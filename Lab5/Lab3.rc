@@ -46,6 +46,7 @@ BEGIN
     POPUP "Файл"
     BEGIN
         MENUITEM "Вийти",                       IDM_EXIT
+        MENUITEM "Редагувати",                  32790
     END
     POPUP "Тип об'єкту"
     BEGIN

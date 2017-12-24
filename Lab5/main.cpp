@@ -6,17 +6,18 @@
 #include "DrawController.h"
 #include "strings.h"
 #include "MainWindow.h"
+#include "CustomTable.h"
 #define MAX_LOADSTRING 100
 
 
 // Глобальные переменные:
-HINSTANCE hInst; // текущий экземпляр
+//HINSTANCE hInst; // текущий экземпляр
 
 int APIENTRY wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdLine, int nCmdShow);
 
-LRESULT CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);
+//LRESULT CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);
 
-MainWindow* wnd;
+//MainWindow* wnd;
 
 
 void initStrings(HINSTANCE hInstance)
@@ -47,10 +48,12 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
 	initStrings(hInstance);
 
-	wnd = new MainWindow(hInstance);
-	wnd->registerWndClass(WndProc);
+	CustomRegister();
 
-	if (!wnd->init(nCmdShow))
+	//new MainWindow(hInstance);
+	MainRegisterWndClass(hInstance);
+
+	if (!MainInit(nCmdShow))
 	{
 		return FALSE;
 	}
@@ -69,10 +72,11 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 		}
 	}
 
+	CustomUnregister();
 	return (int)msg.wParam;
 }
-
-LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
-{
-	return wnd->WndProc(hWnd, message, wParam, lParam);
-}
+//
+//LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
+//{
+//	return wnd->WndProc(hWnd, message, wParam, lParam);
+//}
