@@ -184,6 +184,7 @@ END
 STRINGTABLE
 BEGIN
     IDS_CUBE                "Куб"
+    IDS_NUMFMT              "%d"
 END
 
 #endif    // Русский (Россия) resources

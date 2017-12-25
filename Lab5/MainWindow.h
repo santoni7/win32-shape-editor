@@ -1,7 +1,4 @@
 #pragma once
-#include "DrawController.h"
-#include "strings.h"
-
 
 ATOM MainRegisterWndClass(HINSTANCE hInst);
 BOOL MainInit(int nCmdShow);

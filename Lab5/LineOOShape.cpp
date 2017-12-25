@@ -6,6 +6,8 @@ LineOOShape::LineOOShape(MPoint p1, MPoint p2) : Shape(p1, p2)
 	SetPoints(p1, p2);
 }
 void LineOOShape::SetPoints(MPoint p1, MPoint p2) {
+	this->p1 = p1;
+	this->p2 = p2;
 	int radius = (int)(MLineLength(p1, p2) * 0.15);
 	MPoint radiusPt = MPoint(radius, radius);
 	MPoint c1_pt1 = p1 - radiusPt,

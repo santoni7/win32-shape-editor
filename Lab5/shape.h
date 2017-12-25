@@ -3,8 +3,10 @@
 #include "Helpers.h"
 
  class Shape {
+ public:
+	 MPoint p1, p2;
 protected:
-	MPoint p1, p2;
+	//MPoint p1, p2;
 	COLORREF outlineCol;
 	COLORREF fillCol;
 	bool shouldFill;
@@ -28,6 +30,7 @@ public:
 
 	virtual void Render(HDC hdc);
 	virtual void RenderSimple(HDC hdc) = 0;
+	virtual const char* SimpleName() const = 0;
 	//virtual void RenderCustom(HDC hdc);
 	virtual ~Shape() { };
 };

@@ -12,6 +12,7 @@ public:
 	CubeShape(MPoint p1, MPoint p2);
 	void SetPoints(MPoint p1, MPoint p2) override;
 	Shape* copy() override;
+	const char* SimpleName() const override { return "cube"; }
 	void RenderSimple(HDC hdc) override;
 	~CubeShape();
 };

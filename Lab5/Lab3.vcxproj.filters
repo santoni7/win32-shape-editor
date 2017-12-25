@@ -19,8 +19,29 @@
     <Filter Include="Исходные файлы\shapes">
       <UniqueIdentifier>{cc923d1a-da7a-4e23-b62a-e5c780bddd14}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Файлы заголовков\CustomTable">
-      <UniqueIdentifier>{782c8de6-e074-472a-ba45-4c13ae885a56}</UniqueIdentifier>
+    <Filter Include="Файлы заголовков\controls">
+      <UniqueIdentifier>{4c3b03a1-bf8b-4f53-a348-e00c458da71e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\windows">
+      <UniqueIdentifier>{cd188d0f-e02a-4b42-b90b-39b3645df188}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\resources">
+      <UniqueIdentifier>{570369c9-36b5-4619-8302-c74c873d0bcb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\shape_editor">
+      <UniqueIdentifier>{4a58fd38-194b-46f2-bfa5-d99d86df413b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\controls">
+      <UniqueIdentifier>{eb6c8eb2-4187-46eb-b899-c1f403258538}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\windows">
+      <UniqueIdentifier>{704f61a2-adda-445b-b6ff-5d6911462ce0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\shape_editor">
+      <UniqueIdentifier>{8db73e6f-1f6f-4bc7-9c6a-5f96073ddb00}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы ресурсов\img">
+      <UniqueIdentifier>{7065d43f-d424-44c7-9f12-7df21c08c49f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -33,25 +54,10 @@
     <ClInclude Include="targetver.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="resource.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="Helpers.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
     <ClInclude Include="Lab4.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="strings.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="DrawController.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="InputProcessor.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="MainWindow.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="shape.h">
@@ -72,33 +78,36 @@
     <ClInclude Include="all_shapes.h">
       <Filter>Файлы заголовков\shapes</Filter>
     </ClInclude>
-    <ClInclude Include="resource1.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="CustomTable.h">
-      <Filter>Файлы заголовков\CustomTable</Filter>
+    <ClInclude Include="MainWindow.h">
+      <Filter>Файлы заголовков\windows</Filter>
     </ClInclude>
     <ClInclude Include="TableDialog.h">
-      <Filter>Файлы заголовков</Filter>
+      <Filter>Файлы заголовков\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Файлы заголовков\resources</Filter>
+    </ClInclude>
+    <ClInclude Include="resource1.h">
+      <Filter>Файлы заголовков\resources</Filter>
+    </ClInclude>
+    <ClInclude Include="DrawController.h">
+      <Filter>Файлы заголовков\shape_editor</Filter>
+    </ClInclude>
+    <ClInclude Include="Helpers.h">
+      <Filter>Файлы заголовков\shape_editor</Filter>
+    </ClInclude>
+    <ClInclude Include="InputProcessor.h">
+      <Filter>Файлы заголовков\shape_editor</Filter>
+    </ClInclude>
+    <ClInclude Include="CustomTable.h">
+      <Filter>Файлы заголовков\controls</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="Helpers.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
     <ClCompile Include="strings.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
-    <ClCompile Include="DrawController.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
-    <ClCompile Include="InputProcessor.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
-    <ClCompile Include="MainWindow.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
     <ClCompile Include="shape.cpp">
@@ -113,14 +122,26 @@
     <ClCompile Include="CubeShape.cpp">
       <Filter>Исходные файлы\shapes</Filter>
     </ClCompile>
-    <ClCompile Include="CustomTable.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
-    <ClCompile Include="TableDialog.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="CustomTable.cpp">
+      <Filter>Исходные файлы\controls</Filter>
+    </ClCompile>
+    <ClCompile Include="DrawController.cpp">
+      <Filter>Исходные файлы\shape_editor</Filter>
+    </ClCompile>
+    <ClCompile Include="Helpers.cpp">
+      <Filter>Исходные файлы\shape_editor</Filter>
+    </ClCompile>
+    <ClCompile Include="InputProcessor.cpp">
+      <Filter>Исходные файлы\shape_editor</Filter>
+    </ClCompile>
+    <ClCompile Include="MainWindow.cpp">
+      <Filter>Исходные файлы\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="TableDialog.cpp">
+      <Filter>Исходные файлы\windows</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -132,50 +153,50 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="small.ico">
-      <Filter>Файлы ресурсов</Filter>
-    </Image>
-    <Image Include="Lab3.ico">
-      <Filter>Файлы ресурсов</Filter>
-    </Image>
-    <Image Include="icon1.ico">
-      <Filter>Файлы ресурсов</Filter>
-    </Image>
-    <Image Include="icon2.ico">
-      <Filter>Файлы ресурсов</Filter>
-    </Image>
-    <Image Include="pt.ico">
-      <Filter>Файлы ресурсов</Filter>
-    </Image>
-    <Image Include="rect.ico">
-      <Filter>Файлы ресурсов</Filter>
-    </Image>
-    <Image Include="ellipse.ico">
-      <Filter>Файлы ресурсов</Filter>
-    </Image>
     <Image Include="bitmap1.bmp">
-      <Filter>Файлы ресурсов</Filter>
-    </Image>
-    <Image Include="pt.bmp">
-      <Filter>Файлы ресурсов</Filter>
-    </Image>
-    <Image Include="line.ico">
-      <Filter>Файлы ресурсов</Filter>
+      <Filter>Файлы ресурсов\img</Filter>
     </Image>
     <Image Include="ellipse.bmp">
-      <Filter>Файлы ресурсов</Filter>
+      <Filter>Файлы ресурсов\img</Filter>
     </Image>
-    <Image Include="line.bmp">
-      <Filter>Файлы ресурсов</Filter>
-    </Image>
-    <Image Include="rect.bmp">
-      <Filter>Файлы ресурсов</Filter>
+    <Image Include="ellipse.ico">
+      <Filter>Файлы ресурсов\img</Filter>
     </Image>
     <Image Include="ellipse1.bmp">
-      <Filter>Файлы ресурсов</Filter>
+      <Filter>Файлы ресурсов\img</Filter>
+    </Image>
+    <Image Include="icon1.ico">
+      <Filter>Файлы ресурсов\img</Filter>
+    </Image>
+    <Image Include="icon2.ico">
+      <Filter>Файлы ресурсов\img</Filter>
+    </Image>
+    <Image Include="Lab3.ico">
+      <Filter>Файлы ресурсов\img</Filter>
+    </Image>
+    <Image Include="line.bmp">
+      <Filter>Файлы ресурсов\img</Filter>
+    </Image>
+    <Image Include="line.ico">
+      <Filter>Файлы ресурсов\img</Filter>
     </Image>
     <Image Include="lineoo1.bmp">
-      <Filter>Файлы ресурсов</Filter>
+      <Filter>Файлы ресурсов\img</Filter>
+    </Image>
+    <Image Include="pt.bmp">
+      <Filter>Файлы ресурсов\img</Filter>
+    </Image>
+    <Image Include="pt.ico">
+      <Filter>Файлы ресурсов\img</Filter>
+    </Image>
+    <Image Include="rect.bmp">
+      <Filter>Файлы ресурсов\img</Filter>
+    </Image>
+    <Image Include="rect.ico">
+      <Filter>Файлы ресурсов\img</Filter>
+    </Image>
+    <Image Include="small.ico">
+      <Filter>Файлы ресурсов\img</Filter>
     </Image>
   </ItemGroup>
   <ItemGroup>

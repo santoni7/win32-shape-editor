@@ -10,6 +10,7 @@ public:
 	LineOOShape(const LineOOShape& sh) : c1(sh.c1), c2(sh.c2), ln(sh.ln), Shape(sh) { }
 	LineOOShape(MPoint p1, MPoint p2);
 	Shape* copy() override;
+	const char* SimpleName() const override { return "lineoo"; }
 	void SetPoints(MPoint p1, MPoint p2) override;
 	void Render(HDC hdc) override;
 	void SetOutlineColor(COLORREF col) override;

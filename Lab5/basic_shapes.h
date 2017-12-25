@@ -10,6 +10,7 @@ public:
 	PointShape(const PointShape& ps) : Shape(ps) { }
 	PointShape(MPoint pt, MPoint ignored) : Shape(pt, MPoint()) { }
 	PointShape(MPoint pt) : Shape(pt, MPoint()) { }
+	const char* SimpleName() const override { return "point"; }
 	Shape* copy() override;
 	void RenderSimple(HDC hdc) override;
 	~PointShape();
@@ -19,6 +20,7 @@ public:
 	LineShape() {}
 	LineShape(const PointShape& ls) : Shape(ls) { }
 	LineShape(MPoint p1, MPoint p2) : Shape(p1, p2) { }
+	const char* SimpleName() const override { return "line"; }
 	Shape* copy() override;
 	void RenderSimple(HDC hdc) override;
 	~LineShape();
@@ -28,6 +30,7 @@ public:
 	RectShape() {}
 	RectShape(const PointShape& rs) : Shape(rs) { }
 	RectShape(MPoint p1, MPoint p2) : Shape(p1, p2) { }
+	const char* SimpleName() const override { return "rect"; }
 	Shape* copy() override;
 	void RenderSimple(HDC hdc) override;
 	~RectShape();
@@ -37,6 +40,7 @@ public:
 	EllipseShape() {}
 	EllipseShape(const PointShape& es) : Shape(es) { }
 	EllipseShape(MPoint p1, MPoint p2) : Shape(p1, p2) { }
+	const char* SimpleName() const override { return "ellipse"; }
 	Shape* copy() override;
 	void RenderSimple(HDC hdc) override;
 	~EllipseShape();

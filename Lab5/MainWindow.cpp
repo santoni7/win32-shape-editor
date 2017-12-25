@@ -4,18 +4,16 @@
 #include "resource.h"
 #include "strings.h"
 #include "TableDialog.h"
-
-
-//private
+#include "DrawController.h"
+//status bar parts
+#define SB_PARTS 2
 
 static HINSTANCE hInst;
 static HWND hwndMain;
-static HWND hwndTableDlg;
 static DrawController* controller;
 static HWND hStatus, hTool;
-#define SB_PARTS 2
 
-//protected
+extern HWND hwndTableDlg;
 static HWND MW_createToolbar();
 static HWND MW_createStatusBar(int sbid, int cParts = SB_PARTS);
 static void MW_updateStatusBarSize(int cParts = SB_PARTS);
@@ -96,49 +94,35 @@ LRESULT CALLBACK MainWndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPar
 			switch (wmId)
 			{
 			case IDM_SHAPETYPE_POINT:
-				controller->Start(ShapeFactory::shape<PointShape>());
-				controller->SetInputMethod(IM_CORNERCORNER);
-				controller->SetOutlineColor(RGB(0, 0, 0));
-				controller->SetFillColor(RGB(0, 0, 0), true);
+
+				controller->Start(new PointShape, IM_CORNERCORNER, RGB(0,0,0), RGB(0,0,0), true);
 				MW_formatWindowText(hStatus, "point");
 				break;
 			case IDM_SHAPETYPE_LINE:
-				controller->Start(ShapeFactory::shape<LineShape>());
-				controller->SetInputMethod(IM_CORNERCORNER);
-				controller->SetOutlineColor(RGB(0, 0, 0));
+				controller->Start(new LineShape, IM_CORNERCORNER, RGB(0, 0, 0), RGB(0, 0, 0), true);
 				MW_formatWindowText(hStatus, "line");
 				break;
 			case IDM_SHAPETYPE_RECTANGLE:
-				controller->Start(ShapeFactory::shape<RectShape>());
-				controller->SetInputMethod(IM_CENTERCORNER);
-				controller->SetOutlineColor(RGB(0, 0, 0));
-				controller->SetFillColor(NULL, false);
+				controller->Start(new RectShape, IM_CENTERCORNER, RGB(0, 0, 0), NULL, false);
 				MW_formatWindowText(hStatus, "rect");
 				break;
 			case IDM_SHAPETYPE_ELLIPSE:
-				controller->Start(ShapeFactory::shape<EllipseShape>());
-				controller->SetInputMethod(IM_CORNERCORNER);
-				controller->SetOutlineColor(RGB(0, 0, 0));
-				controller->SetFillColor(RGB(255, 165, 0), true);
+				controller->Start(new EllipseShape, IM_CORNERCORNER, RGB(0, 0, 0), RGB(255, 165, 0), true);
 				MW_formatWindowText(hStatus, "ellipse");
 				break;
 			case IDM_SHAPETYPE_LINEOO:
-				controller->Start(ShapeFactory::shape<LineOOShape>());
-				controller->SetInputMethod(IM_CORNERCORNER);
-				controller->SetOutlineColor(RGB(0, 0, 0));
-				controller->SetFillColor(RGB(30, 165, 160), true);
+				controller->Start(new LineOOShape, IM_CORNERCORNER, RGB(0, 0, 0), RGB(30, 165, 160), true);
 				MW_formatWindowText(hStatus, "lineoo");
 				break;
 			case IDM_SHAPETYPE_CUBE:
-				controller->Start(ShapeFactory::shape<CubeShape>());
-				controller->SetInputMethod(IM_CORNERCORNER);
-				controller->SetOutlineColor(RGB(0, 0, 0));
-				controller->SetFillColor(NULL, false);
+				controller->Start(new CubeShape, IM_CORNERCORNER, RGB(0, 0, 0), NULL, false);
 				MW_formatWindowText(hStatus, "cube");
 				break;
 			case IDM_EDITTABLE:
 				if (!IsWindow(hwndTableDlg)) {
 					hwndTableDlg = CreateTableDialog(hInst, hWnd);
+					CustomTableData* data = controller->exportData();
+					TblDlgSetData(data);
 					ShowWindow(hwndTableDlg, SW_SHOW);
 				}
 				break;

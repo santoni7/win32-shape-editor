@@ -4,6 +4,7 @@
 //
 #define IDD_DIALOG1                     101
 #define IDC_CUSTOM2                     1002
+#define IDC_CUSTOMTABLE                 1002
 #define IDC_SCROLLBAR1                  1003
 
 // Next default values for new objects

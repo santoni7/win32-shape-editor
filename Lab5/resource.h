@@ -19,6 +19,8 @@
 #define IDS_SHAPECOUNT_FMT              110
 #define IDS_LINEOO                      111
 #define IDS_CUBE                        112
+#define IDS_NUMFMT                      113
+#define IDS_STRINFMT                    114
 #define IDR_MAINFRAME                   128
 #define IDB_PT                          133
 #define IDB_ELLIPSE                     137

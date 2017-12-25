@@ -2,6 +2,10 @@
 #include "DrawController.h"
 #include "all_shapes.h"
 #include <algorithm>
+#include "strings.h"
+#include <typeinfo>
+#include "shape.h"
+#include <iostream>
 #define SHAPES_ARRAY_SIZE 123
 
 //Shape *SHAPES[SHAPES_ARRAY_SIZE];
@@ -11,7 +15,6 @@ DrawController::DrawController(HWND hWnd)
 {
 	this->hWnd = hWnd;
 	this->inputProcessor = new TwoPointInputProcessor(hWnd);
-	this->allocator = std::allocator<Shape>();
 }
 
 DrawController::~DrawController()
@@ -24,12 +27,48 @@ int DrawController::GetShapesCount() const
 	return cur;
 }
 
+CustomTableData * DrawController::exportData() const
+{
+	auto pData = new CustomTableData;
+	pData->cntCol = 5;
+	pData->cntRow = cur;
+	pData->colW = new int[5]{ 90,50,50,50,50 };
+	//pData->rowH = new int[cur];
+	pData->width = 90 + 50 * 4;
+	pData->height = 80;
+	pData->rows;// = std::vector<CustomTableRow*>(cur + 1);
+	for (int i = 0; i<=cur; ++i)
+	{
+		CustomTableRow *row = new CustomTableRow;
+		strings* str = strings::instance();
+		row->height = 25;
+		if (i == 1) row->selected = true;
+		else row->selected = false;
+		row->cells.push_back(new CustomTableCell(str->get(shapes.at(i)->SimpleName())));
+		row->cells.push_back(new CustomTableCell(str->format("numfmt", shapes.at(i)->p1.x)));
+		row->cells.push_back(new CustomTableCell(str->format("numfmt", shapes.at(i)->p1.y)));
+		row->cells.push_back(new CustomTableCell(str->format("numfmt", shapes.at(i)->p2.x)));
+		row->cells.push_back(new CustomTableCell(str->format("numfmt", shapes.at(i)->p2.y)));
+		pData->rows.push_back(row);
+	}
+	return pData;
+}
+
 void DrawController::Start(Shape* sh) 
 {
 	if (cur >= shapes.size()) {
 		reallocate();
 	}
 	shapes[cur] = sh;
+}
+
+
+void DrawController::Start(Shape* sh, InputMethod im, COLORREF outline, COLORREF fill, bool shouldFill) 
+{
+	Start(sh);
+	SetInputMethod(im);
+	SetOutlineColor(outline);
+	SetFillColor(fill, shouldFill);
 }
 
 Shape* DrawController::current() const 
