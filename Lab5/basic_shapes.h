@@ -3,7 +3,7 @@
 #include "Helpers.h"
 #include "shape.h"
 
-//#define SH_POINT_WIDTH 4
+#define SH_POINT_WIDTH 4
 class PointShape : public Shape {
 public:
 	PointShape() { shouldFill = true; }

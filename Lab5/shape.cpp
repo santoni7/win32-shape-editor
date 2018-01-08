@@ -23,6 +23,15 @@ void Shape::SetFillColor(COLORREF color, bool shouldFill)
 	this->shouldFill = shouldFill;
 }
 
+Shape::render_data Shape::GetRenderData()
+{
+	Shape::render_data data;
+	data.outlineCol = this->outlineCol;
+	data.fillCol = this->fillCol;
+	data.shouldFill = this->shouldFill;
+	return data;
+}
+
 void Shape::beforeRender(HDC hdc) {
 	render_info.hBrush = (HBRUSH)(shouldFill
 		? ::CreateSolidBrush(fillCol)

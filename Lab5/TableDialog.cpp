@@ -2,63 +2,73 @@
 #include "TableDialog.h"
 #include "CustomTableControl.h"
 #include "resource1.h"
-#include "CustomTableClass.h"
+#include "CustomEditTable.h"
 
-//static HWND hCustomTable;
-CustomTable* cTable;
+static HINSTANCE hInst;
 static CustomTableData* customData;
 static SelectionChangedListener listener;
-HWND CreateTableDialog(HINSTANCE hInst, HWND hwndParent)
+HWND CreateTableDialog(HINSTANCE hInstance, HWND hwndParent)
 {
-	return CreateDialog(hInst,
+	hInst = hInstance;
+	HWND hDlg = CreateDialog(hInst,
 		MAKEINTRESOURCE(IDD_DIALOG1),
 		hwndParent, (DLGPROC)TableDlgProc);
+	return hDlg;
 }
 
-void TblDlgSetData(CustomTableData * data)
+void TblDlgSetData(HWND hDlg, CustomTableData * data)
 {
+	CustomTable* cTable = (CustomTable*)GetWindowLongPtr(hDlg, GWLP_USERDATA);
 	if (cTable) {
+		cTable->GetData()->hwnd = cTable->hwnd();
 		cTable->SetData(data);
+		cTable->Update();
 	}
 	customData = data;
 }
-void TblDlgNotifyDataChanged()
+void TblDlgNotifyDataChanged(HWND hDlg)
 {
-	if (cTable) cTable->Update();
+	CustomTable* cTable = (CustomTable*)GetWindowLongPtr(hDlg, GWLP_USERDATA);
+	if (cTable) { 
+		cTable->SetData(customData);
+		cTable->Update(); 
+	}
+	InvalidateRect(cTable->hwnd(), NULL, TRUE);
 }
 
-
-CustomTableData* TblDlgGetData()
+CustomTableData* TblDlgGetData(HWND hDlg)
 {
+	CustomTable* cTable = (CustomTable*)GetWindowLongPtr(hDlg, GWLP_USERDATA);
 	if (cTable) return cTable->GetData();
 	return nullptr;
 }
 
+#define _MARGIN_ 5
 INT_PTR CALLBACK TableDlgProc(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
 {
-	UNREFERENCED_PARAMETER(lParam);
+	CustomTable* cTable = (CustomTable*)GetWindowLongPtr(hDlg, GWLP_USERDATA);
 	switch (message)
 	{
 	case WM_INITDIALOG:		
 	{
-		DWORD style = XXS_ALLSTYLES;
-		cTable = new CustomTable(hDlg, 0, 1234, style);// CreateWindowEx(0, CUSTOMTABLE_CLASS, L"", WS_CHILD | WS_VISIBLE, 0, 0, 400, 400, hDlg, 0, 0, style);// GetDlgItem(hDlg, IDC_CUSTOMTABLE);
-		if(customData) cTable->SetData(customData);
+		DWORD style = XXS_DOUBLEBUFFER | XXS_WEIGHTSIZING | XXS_BACKGROUND_AB | XXS_ENABLE_ROWSELECT | XXS_HEADER_ROW | XXS_HEADER_COLUMN | XXS_INIT_EMPTY_DATA;
+		auto cTable = new CustomTable(hDlg, hInst, 1239, style, 5, 1);
+		SetWindowLongPtr(hDlg, GWLP_USERDATA, (LONG_PTR)cTable);
+
+		RECT rc; GetClientRect(hDlg, &rc);
+		int h = rc.bottom;
+		int w = rc.right;
+		cTable->SetPos(_MARGIN_, _MARGIN_, w - 2 * _MARGIN_, h - 2 * _MARGIN_);
 		cTable->Focus();
+		cTable->Update();
 		return INT_PTR(TRUE);
 	}
-	/*case WM_NOTIFY:
-		PostMessage(hCustomTable, WM_NOTIFY, 0, 0);
-		return INT_PTR(TRUE);*/
-
-	//case WM_GETDLGCODE:
-	//	return DLGC_WANTALLKEYS;
+	case WM_GETDLGCODE:
+		return DLGC_WANTALLKEYS;
 	case WM_SIZE: {
 		int h = HIWORD(lParam);
 		int w = LOWORD(lParam);
-#define _MARGIN_ 5
 		cTable->SetPos(_MARGIN_, _MARGIN_, w - 2 * _MARGIN_, h - 2 * _MARGIN_);
-		//SetWindowPos(hCustomTable, nullptr, _MARGIN_, _MARGIN_, w- 2*_MARGIN_, h- 2*_MARGIN_, SWP_SHOWWINDOW | SWP_NOZORDER);
 		return 0;
 	}
 	case WM_KEYDOWN:
@@ -72,9 +82,9 @@ INT_PTR CALLBACK TableDlgProc(HWND hDlg, UINT message, WPARAM wParam, LPARAM lPa
 	case WM_COMMAND:
 		if (LOWORD(wParam) == IDOK || LOWORD(wParam) == IDCANCEL)
 		{
-			//EndDialog(hDlg, LOWORD(wParam));
+			auto pData = cTable->GetData();
+			pData->onSelectionChanged(pData, -1, pData->nSelected);
 			DestroyWindow(hDlg);
-			//hwndTableDlg = NULL;
 			return INT_PTR(TRUE);
 		}
 		break;

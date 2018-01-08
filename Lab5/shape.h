@@ -5,6 +5,11 @@
  class Shape {
  public:
 	 MPoint p1, p2;
+	 struct render_data {
+		 COLORREF outlineCol;
+		 COLORREF fillCol;
+		 bool shouldFill;
+	 };
 protected:
 	//MPoint p1, p2;
 	COLORREF outlineCol;
@@ -27,7 +32,7 @@ public:
 	void SetPoints(int x1, int y1, int x2, int y2);
 	virtual void SetOutlineColor(COLORREF color);
 	virtual void SetFillColor(COLORREF color, bool shouldFill);
-
+	render_data GetRenderData();
 	virtual void Render(HDC hdc);
 	virtual void RenderSimple(HDC hdc) = 0;
 	virtual const char* SimpleName() const = 0;

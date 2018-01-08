@@ -134,10 +134,11 @@ void DrawController::PaintShapes(const HDC &hdc, RECT* rc) const
 			shapes[i]->Render(hdc);
 		}
 	}
-	if (iMarkedShape >= 0)
+	if (iMarkedShape >= 0 && iMarkedShape </*=*/ cur) 
 	{
-		HBRUSH hbr = (HBRUSH)GetStockObject(BLACK_BRUSH);
-		HPEN hpen = (HPEN)GetStockObject(DKGRAY_BRUSH);
+		auto render_data = shapes[iMarkedShape]->GetRenderData();
+		HBRUSH hbr = render_data.shouldFill ? CreateSolidBrush(render_data.fillCol) : (HBRUSH)GetStockObject(NULL_BRUSH);// (HBRUSH)GetStockObject(BLACK_BRUSH);
+		HPEN hpen = (HPEN)CreatePen(PS_SOLID, 3, RGB(0, 0, 0));
 		HBRUSH hbrOld = (HBRUSH)SelectObject(hdc, hbr);
 		HPEN hpenOld = (HPEN)SelectObject(hdc, hpen);
 		shapes[iMarkedShape]->RenderSimple(hdc);
