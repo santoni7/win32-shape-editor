@@ -6,7 +6,8 @@
 #include "DrawController.h"
 #include "strings.h"
 #include "MainWindow.h"
-#include "CustomTable.h"
+#include "CustomTableControl.h"
+#include "wheel.h"
 #define MAX_LOADSTRING 100
 //GLOBAL:
 HWND hwndTableDlg;
@@ -38,8 +39,8 @@ int APIENTRY wWinMain(HINSTANCE hInstance,  HINSTANCE hPrevInstance, LPWSTR lpCm
 
 	initStrings(hInstance);
 
-	CustomRegister();
-
+	//CustomRegister();
+	WheelInitialize();
 	//new MainWindow(hInstance);
 	MainRegisterWndClass(hInstance);
 
@@ -61,6 +62,7 @@ int APIENTRY wWinMain(HINSTANCE hInstance,  HINSTANCE hPrevInstance, LPWSTR lpCm
 		}
 	}
 
-	CustomUnregister();
+	//CustomUnregister();
+	WheelUninitialize();
 	return (int)msg.wParam;
 }

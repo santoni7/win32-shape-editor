@@ -13,15 +13,6 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Файлы заголовков\shapes">
-      <UniqueIdentifier>{82add7a0-6428-4925-9754-8a7ba623b135}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Исходные файлы\shapes">
-      <UniqueIdentifier>{cc923d1a-da7a-4e23-b62a-e5c780bddd14}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Файлы заголовков\controls">
-      <UniqueIdentifier>{4c3b03a1-bf8b-4f53-a348-e00c458da71e}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Файлы заголовков\windows">
       <UniqueIdentifier>{cd188d0f-e02a-4b42-b90b-39b3645df188}</UniqueIdentifier>
     </Filter>
@@ -43,6 +34,12 @@
     <Filter Include="Файлы ресурсов\img">
       <UniqueIdentifier>{7065d43f-d424-44c7-9f12-7df21c08c49f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Исходные файлы\shape_editor\shapes">
+      <UniqueIdentifier>{cc923d1a-da7a-4e23-b62a-e5c780bddd14}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\shape_editor\shapes">
+      <UniqueIdentifier>{82add7a0-6428-4925-9754-8a7ba623b135}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -61,22 +58,22 @@
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="shape.h">
-      <Filter>Файлы заголовков\shapes</Filter>
+      <Filter>Файлы заголовков\shape_editor\shapes</Filter>
     </ClInclude>
     <ClInclude Include="basic_shapes.h">
-      <Filter>Файлы заголовков\shapes</Filter>
+      <Filter>Файлы заголовков\shape_editor\shapes</Filter>
     </ClInclude>
     <ClInclude Include="LineOOShape.h">
-      <Filter>Файлы заголовков\shapes</Filter>
+      <Filter>Файлы заголовков\shape_editor\shapes</Filter>
     </ClInclude>
     <ClInclude Include="ShapeFactory.h">
-      <Filter>Файлы заголовков\shapes</Filter>
+      <Filter>Файлы заголовков\shape_editor\shapes</Filter>
     </ClInclude>
     <ClInclude Include="CubeShape.h">
-      <Filter>Файлы заголовков\shapes</Filter>
+      <Filter>Файлы заголовков\shape_editor\shapes</Filter>
     </ClInclude>
     <ClInclude Include="all_shapes.h">
-      <Filter>Файлы заголовков\shapes</Filter>
+      <Filter>Файлы заголовков\shape_editor\shapes</Filter>
     </ClInclude>
     <ClInclude Include="MainWindow.h">
       <Filter>Файлы заголовков\windows</Filter>
@@ -99,9 +96,6 @@
     <ClInclude Include="InputProcessor.h">
       <Filter>Файлы заголовков\shape_editor</Filter>
     </ClInclude>
-    <ClInclude Include="CustomTable.h">
-      <Filter>Файлы заголовков\controls</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -111,22 +105,19 @@
       <Filter>Исходные файлы</Filter>
     </ClCompile>
     <ClCompile Include="shape.cpp">
-      <Filter>Исходные файлы\shapes</Filter>
+      <Filter>Исходные файлы\shape_editor\shapes</Filter>
     </ClCompile>
     <ClCompile Include="basic_shapes.cpp">
-      <Filter>Исходные файлы\shapes</Filter>
+      <Filter>Исходные файлы\shape_editor\shapes</Filter>
     </ClCompile>
     <ClCompile Include="LineOOShape.cpp">
-      <Filter>Исходные файлы\shapes</Filter>
+      <Filter>Исходные файлы\shape_editor\shapes</Filter>
     </ClCompile>
     <ClCompile Include="CubeShape.cpp">
-      <Filter>Исходные файлы\shapes</Filter>
+      <Filter>Исходные файлы\shape_editor\shapes</Filter>
     </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>Исходные файлы</Filter>
-    </ClCompile>
-    <ClCompile Include="CustomTable.cpp">
-      <Filter>Исходные файлы\controls</Filter>
     </ClCompile>
     <ClCompile Include="DrawController.cpp">
       <Filter>Исходные файлы\shape_editor</Filter>

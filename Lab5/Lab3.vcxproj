@@ -73,6 +73,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
+    <IncludePath>C:\Users\santo\source\repos\TableEditor;C:\Users\santo\source\repos\TableEditor\CustomTable;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
@@ -94,6 +95,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>C:\Users\santo\source\repos\TableEditor\CustomTable\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -150,7 +152,6 @@
     <ClInclude Include="all_shapes.h" />
     <ClInclude Include="basic_shapes.h" />
     <ClInclude Include="CubeShape.h" />
-    <ClInclude Include="CustomTable.h" />
     <ClInclude Include="InputProcessor.h" />
     <ClInclude Include="Lab4.h" />
     <ClInclude Include="LineOOShape.h" />
@@ -169,7 +170,6 @@
   <ItemGroup>
     <ClCompile Include="basic_shapes.cpp" />
     <ClCompile Include="CubeShape.cpp" />
-    <ClCompile Include="CustomTable.cpp" />
     <ClCompile Include="InputProcessor.cpp" />
     <ClCompile Include="Helpers.cpp" />
     <ClCompile Include="main.cpp" />
@@ -211,6 +211,11 @@
     <None Include="ClassDiagram.cd" />
     <None Include="ClassDiagram1.cd" />
     <None Include="ClassDiagram2.cd" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\source\repos\TableEditor\CustomTable\CustomTable.vcxproj">
+      <Project>{542b249a-820c-4a80-a3e1-2a79ffdef415}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

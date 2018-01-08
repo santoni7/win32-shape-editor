@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "MainWindow.h"
-#include "CustomTable.h"
+#include "CustomTableControl.h"
 #include "resource.h"
 #include "strings.h"
 #include "TableDialog.h"
@@ -66,6 +66,46 @@ BOOL MainInit(int nCmdShow)
 	return TRUE;
 }
 
+static CustomTableRow* BuildTableRow(Shape* sh)
+{
+	strings* str = strings::instance();
+	CustomTableRow* row = new CustomTableRow;
+	row->cells.push_back(new CustomTableCell(str->get(sh->SimpleName())));
+	row->cells.push_back(new CustomTableCell(str->format("numfmt", sh->p1.x)));
+	row->cells.push_back(new CustomTableCell(str->format("numfmt", sh->p1.y)));
+	row->cells.push_back(new CustomTableCell(str->format("numfmt", sh->p2.x)));
+	row->cells.push_back(new CustomTableCell(str->format("numfmt", sh->p2.y)));
+	return row;
+}
+
+static void UpdateTableData(CustomTableData* pData, std::vector<Shape*>& shapes, int n)
+{
+	pData->rows.clear();
+	pData->col_headings = std::vector<LPCWSTR>({ L"Назва", L"X1", L"X2", L"X3", L"X4" });
+	strings* str = strings::instance();
+	for (int i = 0; i<n; ++i)
+	{
+		Shape* sh = shapes.at(i);
+		CustomTableRow* row = BuildTableRow(sh);
+		pData->rows.push_back(row);
+	}
+	//pData->nRows = pData->rows.size();
+}
+/* Called every time selected row changes */
+void CALLBACK OnSelChanged(CustomTableData* pData, int nSelected, int nPrevSelected)
+{
+	controller->mark(nSelected);
+	InvalidateRect(hwndMain, NULL, TRUE);
+}
+static CustomTableData* BuildTableData(std::vector<Shape*> &shapes, int n)
+{
+	auto pData = new CustomTableData(5,  XXS_ALLSTYLES);
+	pData->col_wg.resize(5, 1.0f);
+	pData->col_wg[0] = 3;
+	UpdateTableData(pData, shapes, n);
+	pData->onSelectionChanged = &OnSelChanged;
+	return pData;
+}
 
 LRESULT CALLBACK MainWndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
@@ -80,6 +120,12 @@ LRESULT CALLBACK MainWndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPar
 	case WM_LBUTTONUP:
 		controller->OnMouseUp();
 		MW_formatShapeCountText(controller->GetShapesCount());
+		if (IsWindow(hwndTableDlg)) {
+			UpdateTableData(TblDlgGetData(), controller->GetShapes(), controller->GetShapesCount());
+			TblDlgNotifyDataChanged();
+			//CustomTableData* data = BuildTableData(controller->GetShapes(), controller->GetShapesCount());
+			// TblDlgSetData(data);
+		}
 		break;
 	case WM_MOUSEMOVE:
 		controller->OnMouseMove();
@@ -119,11 +165,13 @@ LRESULT CALLBACK MainWndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPar
 				MW_formatWindowText(hStatus, "cube");
 				break;
 			case IDM_EDITTABLE:
-				if (!IsWindow(hwndTableDlg)) {
-					hwndTableDlg = CreateTableDialog(hInst, hWnd);
-					CustomTableData* data = controller->exportData();
+				{
+					if (!IsWindow(hwndTableDlg)) {
+						hwndTableDlg = CreateTableDialog(hInst, hWnd);
+						ShowWindow(hwndTableDlg, SW_SHOW);
+					}
+					CustomTableData* data = BuildTableData(controller->GetShapes(), controller->GetShapesCount());
 					TblDlgSetData(data);
-					ShowWindow(hwndTableDlg, SW_SHOW);
 				}
 				break;
 			case IDM_ABOUT:

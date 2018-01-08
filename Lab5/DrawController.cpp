@@ -27,32 +27,11 @@ int DrawController::GetShapesCount() const
 	return cur;
 }
 
-CustomTableData * DrawController::exportData() const
+std::vector<Shape*>& DrawController::GetShapes()
 {
-	auto pData = new CustomTableData;
-	pData->cntCol = 5;
-	pData->cntRow = cur;
-	pData->colW = new int[5]{ 90,50,50,50,50 };
-	//pData->rowH = new int[cur];
-	pData->width = 90 + 50 * 4;
-	pData->height = 80;
-	pData->rows;// = std::vector<CustomTableRow*>(cur + 1);
-	for (int i = 0; i<=cur; ++i)
-	{
-		CustomTableRow *row = new CustomTableRow;
-		strings* str = strings::instance();
-		row->height = 25;
-		if (i == 1) row->selected = true;
-		else row->selected = false;
-		row->cells.push_back(new CustomTableCell(str->get(shapes.at(i)->SimpleName())));
-		row->cells.push_back(new CustomTableCell(str->format("numfmt", shapes.at(i)->p1.x)));
-		row->cells.push_back(new CustomTableCell(str->format("numfmt", shapes.at(i)->p1.y)));
-		row->cells.push_back(new CustomTableCell(str->format("numfmt", shapes.at(i)->p2.x)));
-		row->cells.push_back(new CustomTableCell(str->format("numfmt", shapes.at(i)->p2.y)));
-		pData->rows.push_back(row);
-	}
-	return pData;
+	return this->shapes;
 }
+
 
 void DrawController::Start(Shape* sh) 
 {
@@ -82,6 +61,41 @@ bool DrawController::reallocate() {
 	return true;
 }
 
+void DrawController::PaintDoubleBuffer(PAINTSTRUCT* pPaintStruct) const
+
+{
+	int cx = pPaintStruct->rcPaint.right - pPaintStruct->rcPaint.left;
+	int cy = pPaintStruct->rcPaint.bottom - pPaintStruct->rcPaint.top;
+	HDC hMemDC;
+	HBITMAP hBmp;
+	HBITMAP hOldBmp;
+	POINT ptOldOrigin;
+
+	// Create new bitmap-back device context, large as the dirty rectangle.
+	hMemDC = CreateCompatibleDC(pPaintStruct->hdc);
+	hBmp = CreateCompatibleBitmap(pPaintStruct->hdc, cx, cy);
+	hOldBmp = (HBITMAP)SelectObject(hMemDC, hBmp);
+
+	// Do the painting into the memory bitmap.
+	OffsetViewportOrgEx(hMemDC, -(pPaintStruct->rcPaint.left),
+		-(pPaintStruct->rcPaint.top), &ptOldOrigin);
+
+	PaintShapes(hMemDC, &pPaintStruct->rcPaint);
+	//PaintShapes(pData, hMemDC, &pPaintStruct->rcPaint, TRUE);
+
+	SetViewportOrgEx(hMemDC, ptOldOrigin.x, ptOldOrigin.y, NULL);
+
+	// Blit the bitmap into the screen. This is really fast operation and although
+	// the CustomPaint() can be complex and slow there will be no flicker any more.
+	BitBlt(pPaintStruct->hdc, pPaintStruct->rcPaint.left, pPaintStruct->rcPaint.top,
+		cx, cy, hMemDC, 0, 0, SRCCOPY);
+
+	// Clean up.
+	SelectObject(hMemDC, hOldBmp);
+	DeleteObject(hBmp);
+	DeleteDC(hMemDC);
+}
+
 void DrawController::OnMouseDown() const
 {
 	inputProcessor->OnMouseDown();
@@ -97,8 +111,6 @@ void DrawController::OnMouseUp()
 	cur++;
 	if (cur >= shapes.size()) 
 		reallocate();
-	//shapes[cur] = allocator.allocate(1);
-	//Shape* new_shape = &Shape(*shapes[cur - 1]);
 	shapes[cur] = shapes[cur-1]->copy();
 
 	::InvalidateRect(hWnd, nullptr, true);
@@ -108,7 +120,29 @@ void DrawController::OnMouseMove() const
 {
 	inputProcessor->OnMouseMove();
 	if (inputProcessor->isPressed()) {
-		DrawRubberBand();
+		HDC hdc = GetDC(hWnd);
+		DrawRubberBand(hdc);
+		ReleaseDC(hWnd, hdc);
+	}
+}
+
+void DrawController::PaintShapes(const HDC &hdc, RECT* rc) const
+{
+	FillRect(hdc, rc, (HBRUSH)GetStockObject(WHITE_BRUSH));
+	for (int i = 0; i < cur; ++i) {
+		if (shapes[i] && i != iMarkedShape) {
+			shapes[i]->Render(hdc);
+		}
+	}
+	if (iMarkedShape >= 0)
+	{
+		HBRUSH hbr = (HBRUSH)GetStockObject(BLACK_BRUSH);
+		HPEN hpen = (HPEN)GetStockObject(DKGRAY_BRUSH);
+		HBRUSH hbrOld = (HBRUSH)SelectObject(hdc, hbr);
+		HPEN hpenOld = (HPEN)SelectObject(hdc, hpen);
+		shapes[iMarkedShape]->RenderSimple(hdc);
+		SelectObject(hdc, hbrOld);
+		SelectObject(hdc, hpenOld);
 	}
 }
 
@@ -116,9 +150,7 @@ void DrawController::OnPaint() const
 {
 	PAINTSTRUCT ps;
 	HDC hdc = ::BeginPaint(hWnd, &ps);
-	for (int i = 0; i < cur; ++i) {
-		if(shapes[i]) shapes[i]->Render(hdc);
-	}
+	PaintDoubleBuffer(&ps);
 	::EndPaint(hWnd, &ps);
 }
 
@@ -131,8 +163,20 @@ void DrawController::Undo()
 	}
 }
 
+void DrawController::mark(int iShape)
+{
+	//this->marked_shapes.insert(shapes.at(iShape));
+	this->iMarkedShape = iShape;
+}
 
-void DrawController::DrawRubberBand() const
+void DrawController::unmark(int iShape)
+{
+	//this->marked_shapes.erase(shapes.at(iShape));
+	this->iMarkedShape = -1;
+}
+
+
+void DrawController::DrawRubberBand(const HDC &hdc) const
 {
 	MPoint start = inputProcessor->start(),
 		end = inputProcessor->end(),
@@ -143,7 +187,6 @@ void DrawController::DrawRubberBand() const
 		prev_start = MReflectPt(inputProcessor->start(), prev);
 	}
 
-	HDC hdc = ::GetDC(hWnd);
 	::SetROP2(hdc, R2_NOTXORPEN);
 	::SelectObject(hdc, ::CreatePen(PS_DOT, 1, 0));
 	
@@ -156,7 +199,6 @@ void DrawController::DrawRubberBand() const
 		curr->RenderSimple(hdc);
 	}
 
-	::ReleaseDC(hWnd, hdc);
 }
 
 
@@ -166,11 +208,6 @@ void DrawController::SetInputMethod(InputMethod inputMethod)
 	einfo.im = inputMethod;
 	inputProcessor->setInputMethod(einfo.im);
 }
-
-//void DrawController::SetShapeType(ShapeType shapeType)
-//{
-//	this->einfo.st = shapeType;
-//}
 
 void DrawController::SetOutlineColor(COLORREF color)
 {
