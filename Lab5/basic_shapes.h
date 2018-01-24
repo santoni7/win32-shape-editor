@@ -7,9 +7,9 @@
 class PointShape : public Shape {
 public:
 	PointShape() { shouldFill = true; }
-	PointShape(const PointShape& ps) : Shape(ps) { }
-	PointShape(MPoint pt, MPoint ignored) : Shape(pt, MPoint()) { }
-	PointShape(MPoint pt) : Shape(pt, MPoint()) { }
+	PointShape(const PointShape& ps) : Shape(ps) { shouldFill = true; }
+	PointShape(MPoint pt, MPoint ignored) : Shape(pt, MPoint()) { shouldFill = true; }
+	PointShape(MPoint pt) : Shape(pt, MPoint()) { shouldFill = true; }
 	const char* SimpleName() const override { return "point"; }
 	Shape* copy() override;
 	void RenderSimple(HDC hdc) override;

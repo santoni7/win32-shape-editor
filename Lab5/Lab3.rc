@@ -73,8 +73,10 @@ IDC_LAB3 ACCELERATORS
 BEGIN
     "/",            IDM_ABOUT,              ASCII,  ALT, NOINVERT
     "?",            IDM_ABOUT,              ASCII,  ALT, NOINVERT
-    "^Z",           IDM_UNDO,               ASCII,  NOINVERT
     "^N",           IDM_CLEAR,              ASCII,  NOINVERT
+    "^Z",           IDM_UNDO,               ASCII,  NOINVERT
+    "S",            IDM_SAVE,               VIRTKEY, CONTROL, NOINVERT
+    "O",            IDM_OPEN,               VIRTKEY, CONTROL, NOINVERT
 END
 
 

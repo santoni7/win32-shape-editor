@@ -22,9 +22,6 @@
     <Filter Include="Файлы заголовков\shape_editor">
       <UniqueIdentifier>{4a58fd38-194b-46f2-bfa5-d99d86df413b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Исходные файлы\controls">
-      <UniqueIdentifier>{eb6c8eb2-4187-46eb-b899-c1f403258538}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Исходные файлы\windows">
       <UniqueIdentifier>{704f61a2-adda-445b-b6ff-5d6911462ce0}</UniqueIdentifier>
     </Filter>
@@ -39,6 +36,39 @@
     </Filter>
     <Filter Include="Файлы заголовков\shape_editor\shapes">
       <UniqueIdentifier>{82add7a0-6428-4925-9754-8a7ba623b135}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\shapes_bridge">
+      <UniqueIdentifier>{83244048-fd24-4c0d-949f-b3eb38fb4208}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\shapes_bridge\impl">
+      <UniqueIdentifier>{8faa9e79-93e8-467f-81a4-d50bfb81bc21}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\shapes_bridge">
+      <UniqueIdentifier>{b99b3622-6528-44b9-a5f6-554bfed19fa0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\shapes_bridge\gdi">
+      <UniqueIdentifier>{31ead40b-ddf8-452f-ac7d-d15cf9ca516e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\shapes_bridge\gdi">
+      <UniqueIdentifier>{a23720bf-52d2-4727-a0ca-f632426e9447}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\shapes_bridge\input">
+      <UniqueIdentifier>{d4574317-7f0b-47c4-8318-6e8f28fe96aa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\shapes_bridge\input">
+      <UniqueIdentifier>{a1df7b8a-74e0-4373-b120-832c9d7b3478}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\shapes_bridge\manager">
+      <UniqueIdentifier>{3a7a650e-9224-4f6f-be1c-d7cb487ec8d1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\shapes_bridge\shapes">
+      <UniqueIdentifier>{6eb79da7-39d1-4be8-8ae7-654823dee9e4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\shapes_bridge\impl">
+      <UniqueIdentifier>{1f731d5f-fa0b-4e8a-a21d-edb9d94b5ea7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\shapes_bridge\manager">
+      <UniqueIdentifier>{431fcff4-af11-4d35-9fe5-7763c53c1955}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -93,8 +123,56 @@
     <ClInclude Include="Helpers.h">
       <Filter>Файлы заголовков\shape_editor</Filter>
     </ClInclude>
+    <ClInclude Include="DataSource.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="XGlobal.h">
+      <Filter>Файлы заголовков\shapes_bridge</Filter>
+    </ClInclude>
     <ClInclude Include="InputProcessor.h">
       <Filter>Файлы заголовков\shape_editor</Filter>
+    </ClInclude>
+    <ClInclude Include="XBasicShapesImpl.h">
+      <Filter>Файлы заголовков\shapes_bridge\impl</Filter>
+    </ClInclude>
+    <ClInclude Include="XGdiShapeImpl.h">
+      <Filter>Файлы заголовков\shapes_bridge\gdi</Filter>
+    </ClInclude>
+    <ClInclude Include="XGdiBasicShapesImpl.h">
+      <Filter>Файлы заголовков\shapes_bridge\gdi</Filter>
+    </ClInclude>
+    <ClInclude Include="XGdiGlobal.h">
+      <Filter>Файлы заголовков\shapes_bridge\gdi</Filter>
+    </ClInclude>
+    <ClInclude Include="XGdiContext.h">
+      <Filter>Файлы заголовков\shapes_bridge\gdi</Filter>
+    </ClInclude>
+    <ClInclude Include="XShapeImpl.h">
+      <Filter>Файлы заголовков\shapes_bridge\impl</Filter>
+    </ClInclude>
+    <ClInclude Include="XInputProcessor.h">
+      <Filter>Файлы заголовков\shapes_bridge\input</Filter>
+    </ClInclude>
+    <ClInclude Include="XDrawController.h">
+      <Filter>Файлы заголовков\shapes_bridge\manager</Filter>
+    </ClInclude>
+    <ClInclude Include="XImplStorage.h">
+      <Filter>Файлы заголовков\shapes_bridge\manager</Filter>
+    </ClInclude>
+    <ClInclude Include="XBasicShapes.h">
+      <Filter>Файлы заголовков\shapes_bridge\shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="XComposite.h">
+      <Filter>Файлы заголовков\shapes_bridge\shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="XContext.h">
+      <Filter>Файлы заголовков\shapes_bridge</Filter>
+    </ClInclude>
+    <ClInclude Include="XShape.h">
+      <Filter>Файлы заголовков\shapes_bridge\shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="XRubberBand.h">
+      <Filter>Файлы заголовков\shapes_bridge</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -133,6 +211,42 @@
     </ClCompile>
     <ClCompile Include="TableDialog.cpp">
       <Filter>Исходные файлы\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="DataSource.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="XShape.cpp">
+      <Filter>Исходные файлы\shapes_bridge</Filter>
+    </ClCompile>
+    <ClCompile Include="XGlobal.cpp">
+      <Filter>Исходные файлы\shapes_bridge</Filter>
+    </ClCompile>
+    <ClCompile Include="XBasicShapes.cpp">
+      <Filter>Исходные файлы\shapes_bridge\gdi</Filter>
+    </ClCompile>
+    <ClCompile Include="XGdiShapeImpl.cpp">
+      <Filter>Исходные файлы\shapes_bridge\gdi</Filter>
+    </ClCompile>
+    <ClCompile Include="XContext.cpp">
+      <Filter>Исходные файлы\shapes_bridge</Filter>
+    </ClCompile>
+    <ClCompile Include="XComposite.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="XInputProcessor.cpp">
+      <Filter>Исходные файлы\shapes_bridge\input</Filter>
+    </ClCompile>
+    <ClCompile Include="XShapeImpl.cpp">
+      <Filter>Исходные файлы\shapes_bridge\impl</Filter>
+    </ClCompile>
+    <ClCompile Include="XDrawController.cpp">
+      <Filter>Исходные файлы\shapes_bridge\manager</Filter>
+    </ClCompile>
+    <ClCompile Include="XImplStorage.cpp">
+      <Filter>Исходные файлы\shapes_bridge\manager</Filter>
+    </ClCompile>
+    <ClCompile Include="XGdiBasicShapesImpl.cpp">
+      <Filter>Исходные файлы\shapes_bridge\gdi</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -194,5 +308,6 @@
     <None Include="ClassDiagram.cd" />
     <None Include="ClassDiagram1.cd" />
     <None Include="ClassDiagram2.cd" />
+    <None Include="ClassDiagram3.cd" />
   </ItemGroup>
 </Project>

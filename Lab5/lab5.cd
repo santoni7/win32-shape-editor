@@ -42,17 +42,10 @@
       <FileName>shape.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ShapeFactory">
-    <Position X="7.5" Y="0.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAABAA=</HashCode>
-      <FileName>ShapeFactory.h</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="DrawController">
     <Position X="3" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AACEAAAEECUARAgABACAKAB4gBBgAAAAJUBgAABChAA=</HashCode>
+      <HashCode>AACAAAAEECUARAgABACAKABYgBAgAAAAJUAAAAAChAA=</HashCode>
       <FileName>DrawController.h</FileName>
     </TypeIdentifier>
   </Class>
@@ -77,38 +70,24 @@
       <FileName>InputProcessor.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="DataSource" Collapsed="true">
-    <Position X="13" Y="0.5" Width="1.5" />
+  <Struct Name="MPoint">
+    <Position X="7.5" Y="2" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAIAAgAAAAAAIAAAAAAAAEAAACAAgAAAABA=</HashCode>
-      <FileName>DataSource.h</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="DataWriter" Collapsed="true">
-    <Position X="14" Y="1.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAQEAAAAIAAAAAAAAAAAAAAAAAAEAAAAgAAAAAABA=</HashCode>
-      <FileName>DataSource.h</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="DataReader" Collapsed="true">
-    <Position X="14" Y="3" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAIAAAAAIAAAAAAAAIAAAAAAAAAEgAAAAAAAAAABA=</HashCode>
-      <FileName>DataSource.h</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Enum Name="ShapeType">
-    <Position X="7.5" Y="4" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAABAAAEAAAAAAAAAAAAAAABAARAAAAAAIAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAABgAAAAAAA=</HashCode>
       <FileName>Helpers.h</FileName>
     </TypeIdentifier>
-  </Enum>
+  </Struct>
   <Enum Name="InputMethod">
     <Position X="7.5" Y="6" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAQAAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Helpers.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="ShapeType">
+    <Position X="7.5" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAEAAAAAAAAAAAAAAABAARAAAAAAIAAAAAAAA=</HashCode>
       <FileName>Helpers.h</FileName>
     </TypeIdentifier>
   </Enum>

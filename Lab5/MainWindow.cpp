@@ -5,12 +5,15 @@
 #include "strings.h"
 #include "TableDialog.h"
 #include "DrawController.h"
+#include "XGlobal.h"
+#include "XGdiGlobal.h"
+#include "XDrawController.h"
+#include "XImplStorage.h"
 //status bar parts
 #define SB_PARTS 2
 
 static HINSTANCE hInst;
 static HWND hwndMain;
-static DrawController* controller;
 static HWND hStatus, hTool;
 
 extern HWND hwndTableDlg;
@@ -23,6 +26,13 @@ static void MW_formatWindowText(HWND hWnd, TKEY str_key);
 static void MW_formatShapeCountText(int count);
 static LPCWSTR gets(TKEY key);
 
+XImplStorage* impStorage;
+
+static XGdiDrawController *controller;
+static XGdiColor *gGreenColor = new XGdiColor(RGB(50, 200, 50));
+static XGdiColor *gRedColor = new XGdiColor(RGB(200, 50, 50));
+static XGdiColor *gBlackColor = new XGdiColor(RGB(0, 0, 0));
+static XGdiColor *gTransparentColor = new XGdiColor(RGB(0, 0, 0), true);
 ATOM MainRegisterWndClass(HINSTANCE hInstance)
 {
 	hInst = hInstance;
@@ -51,8 +61,13 @@ BOOL MainInit(int nCmdShow)
 	{
 		return FALSE;
 	}
-	controller = new DrawController(hwndMain);
-	controller->Start(ShapeFactory::shape<PointShape>());
+	XGdiContext ctx(hwndMain);
+	XImplStorage::inst()->AddImpl<XPathShapeImpl>(new XGdiPathShapeImpl());
+	XImplStorage::inst()->AddImpl<XPointImpl>(new XGdiPointShapeImpl());
+	XBasicShapeFactory factory;
+
+	controller = new XGdiDrawController(ctx);
+	controller->Start(factory.CreatePath(std::vector<MPoint>({MPoint(100,100), MPoint(200, 200)}), true), IM_CORNERCORNER, gBlackColor, gBlackColor);
 
 	hTool = MW_createToolbar();
 
@@ -82,7 +97,6 @@ static CustomTableRow* BuildTableRow(Shape* sh)
 /* Called every time selected row changes */
 void CALLBACK OnSelChanged(CustomTableData* pData, int nSelected, int nPrevSelected)
 {
-	controller->mark(nSelected);
 	InvalidateRect(hwndMain, NULL, TRUE);
 }
 static void UpdateTableData(CustomTableData* pData, std::vector<Shape*>& shapes, int n)
@@ -102,70 +116,107 @@ static void UpdateTableData(CustomTableData* pData, std::vector<Shape*>& shapes,
 
 LRESULT CALLBACK MainWndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
+	XGdiContext ctx(hWnd);
 	switch (message)
 	{
 	case WM_CREATE:
 		//hCustomTable = CreateWindow(CUSTOMTABLE, NULL, WS_CHILD | WS_VISIBLE, 0, 0, 300, 300, hWnd, HMENU(CUSTOMID), hInst, NULL);
 		break;
 	case WM_LBUTTONDOWN:
-		controller->OnMouseDown();
+		controller->OnMouseDown(ctx);
 		break;
 	case WM_LBUTTONUP:
-		controller->OnMouseUp();
+		controller->OnMouseUp(ctx);
 		MW_formatShapeCountText(controller->GetShapesCount());
-		if (IsWindow(hwndTableDlg)) {
-			UpdateTableData(TblDlgGetData(hwndTableDlg), controller->GetShapes(), controller->GetShapesCount());
-			TblDlgNotifyDataChanged(hwndTableDlg);
-		}
+		//if (IsWindow(hwndTableDlg)) {
+		//	UpdateTableData(TblDlgGetData(hwndTableDlg), controller->GetShapes(), controller->GetShapesCount());
+		//	TblDlgNotifyDataChanged(hwndTableDlg);
+		//}
 		break;
 	case WM_MOUSEMOVE:
-		controller->OnMouseMove();
+		controller->OnMouseMove(ctx);
 		break;
 	case WM_PAINT:
-		controller->OnPaint();
+		controller->OnPaint(ctx);
 		break;
 	case WM_COMMAND:
 		{
 			int wmId = LOWORD(wParam);
 			// Разобрать выбор в меню:
+			XBasicShapeFactory factory;
 			switch (wmId)
 			{
 			case IDM_SHAPETYPE_POINT:
 
-				controller->Start(new PointShape, IM_CORNERCORNER, RGB(0,0,0), RGB(0,0,0), true);
+				//controller->Start(new PointShape, IM_CORNERCORNER, RGB(0,0,0), RGB(0,0,0), true);
+				//XBasicShapeFactory()
+				//controller->Start(factory.CreatePoint(), IM_CORNERCORNER, gBlackColor, gBlackColor);
+				controller->Start(factory.CreatePath(std::vector<MPoint>(), true), IM_CORNERCORNER, gBlackColor, gBlackColor);
+
 				MW_formatWindowText(hStatus, "point");
 				break;
 			case IDM_SHAPETYPE_LINE:
-				controller->Start(new LineShape, IM_CORNERCORNER, RGB(0, 0, 0), RGB(0, 0, 0), true);
+				controller->Start(factory.CreateLine(), IM_CORNERCORNER, gBlackColor, gBlackColor);
 				MW_formatWindowText(hStatus, "line");
 				break;
 			case IDM_SHAPETYPE_RECTANGLE:
-				controller->Start(new RectShape, IM_CENTERCORNER, RGB(0, 0, 0), NULL, false);
+				controller->Start(factory.CreateLineOO(), IM_CENTERCORNER, gBlackColor, gTransparentColor);
 				MW_formatWindowText(hStatus, "rect");
 				break;
 			case IDM_SHAPETYPE_ELLIPSE:
-				controller->Start(new EllipseShape, IM_CORNERCORNER, RGB(0, 0, 0), RGB(255, 165, 0), true);
+				controller->Start(factory.CreateEllipse(), IM_CORNERCORNER, gBlackColor, gTransparentColor);
 				MW_formatWindowText(hStatus, "ellipse");
 				break;
-			case IDM_SHAPETYPE_LINEOO:
-				controller->Start(new LineOOShape, IM_CORNERCORNER, RGB(0, 0, 0), RGB(30, 165, 160), true);
-				MW_formatWindowText(hStatus, "lineoo");
-				break;
-			case IDM_SHAPETYPE_CUBE:
-				controller->Start(new CubeShape, IM_CORNERCORNER, RGB(0, 0, 0), NULL, false);
-				MW_formatWindowText(hStatus, "cube");
-				break;
-			case IDM_EDITTABLE:
-				{
-					//CustomTableData* data = BuildTableData(controller->GetShapes(), controller->GetShapesCount());
-					if (!IsWindow(hwndTableDlg)) {
-						hwndTableDlg = CreateTableDialog(hInst, hWnd);
-						ShowWindow(hwndTableDlg, SW_SHOW);
-					}
-					//TblDlgSetData(hwndTableDlg, data);
-					UpdateTableData(TblDlgGetData(hwndTableDlg), controller->GetShapes(), controller->GetShapesCount());
-				}
-				break;
+			//case IDM_SHAPETYPE_LINEOO:
+			//	controller->Start(new LineOOShape, IM_CORNERCORNER, RGB(0, 0, 0), RGB(30, 165, 160), true);
+			//	MW_formatWindowText(hStatus, "lineoo");
+			//	break;
+			//case IDM_SHAPETYPE_CUBE:
+			//	controller->Start(new CubeShape, IM_CORNERCORNER, RGB(0, 0, 0), NULL, false);
+			//	MW_formatWindowText(hStatus, "cube");
+			//	break;
+			//case IDM_EDITTABLE:
+			//	{
+			//		if (!IsWindow(hwndTableDlg)) {
+			//			hwndTableDlg = CreateTableDialog(hInst, hWnd);
+			//			ShowWindow(hwndTableDlg, SW_SHOW);
+			//		}
+			//		UpdateTableData(TblDlgGetData(hwndTableDlg), controller->GetShapes(), controller->GetShapesCount());
+			//	}
+			//	break;
+			//case IDM_SAVE:
+			//{
+			//	DataWriter dw(hWnd);
+			//	std::vector<Shape*> &sh = controller->GetShapes();
+			//	if (dw.OpenFileDlg()) {
+			//		for (int i = 0; i < controller->GetShapesCount(); ++i)
+			//		{
+			//			dw.WriteNext(sh[i]);
+			//		}
+			//		dw.CloseFile();
+			//	}
+			//}
+			//	break;
+			//case IDM_OPEN:
+			//{
+			//	DataReader dr(hWnd);
+			//	if (dr.OpenFileDlg()) {
+			//		Shape* sh;
+			//		std::vector<Shape*> new_shapes;
+			//		while ((sh = dr.ReadNext())) {
+			//			new_shapes.push_back(sh);
+			//		}
+			//		dr.CloseFile();
+			//		controller->SetShapes(new_shapes, new_shapes.size());
+			//		controller->Start(new PointShape);
+			//	}
+			//	InvalidateRect(hWnd, NULL, TRUE);
+			//}
+			//	break;
+			//case IDM_CLEAR:
+			//	controller->Clear();
+			//	InvalidateRect(hWnd, NULL, TRUE);
+			//	break;
 			case IDM_ABOUT:
 				DialogBox(hInst, MAKEINTRESOURCE(IDD_ABOUTBOX), hWnd, AboutDlgProc);
 				break;
@@ -173,7 +224,7 @@ LRESULT CALLBACK MainWndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPar
 				DestroyWindow(hWnd);
 				break;
 			case IDM_UNDO:
-				controller->Undo();
+				controller->Undo(ctx);
 				break;
 			default:
 				return DefWindowProc(hWnd, message, wParam, lParam);

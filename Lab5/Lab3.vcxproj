@@ -152,6 +152,7 @@
     <ClInclude Include="all_shapes.h" />
     <ClInclude Include="basic_shapes.h" />
     <ClInclude Include="CubeShape.h" />
+    <ClInclude Include="DataSource.h" />
     <ClInclude Include="InputProcessor.h" />
     <ClInclude Include="Lab4.h" />
     <ClInclude Include="LineOOShape.h" />
@@ -166,10 +167,26 @@
     <ClInclude Include="strings.h" />
     <ClInclude Include="TableDialog.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="XBasicShapes.h" />
+    <ClInclude Include="XBasicShapesImpl.h" />
+    <ClInclude Include="XComposite.h" />
+    <ClInclude Include="XContext.h" />
+    <ClInclude Include="XDrawController.h" />
+    <ClInclude Include="XGdiBasicShapesImpl.h" />
+    <ClInclude Include="XGdiContext.h" />
+    <ClInclude Include="XGdiGlobal.h" />
+    <ClInclude Include="XGdiShapeImpl.h" />
+    <ClInclude Include="XGlobal.h" />
+    <ClInclude Include="XImplStorage.h" />
+    <ClInclude Include="XInputProcessor.h" />
+    <ClInclude Include="XRubberBand.h" />
+    <ClInclude Include="XShape.h" />
+    <ClInclude Include="XShapeImpl.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="basic_shapes.cpp" />
     <ClCompile Include="CubeShape.cpp" />
+    <ClCompile Include="DataSource.cpp" />
     <ClCompile Include="InputProcessor.cpp" />
     <ClCompile Include="Helpers.cpp" />
     <ClCompile Include="main.cpp" />
@@ -185,6 +202,17 @@
     </ClCompile>
     <ClCompile Include="strings.cpp" />
     <ClCompile Include="TableDialog.cpp" />
+    <ClCompile Include="XBasicShapes.cpp" />
+    <ClCompile Include="XComposite.cpp" />
+    <ClCompile Include="XContext.cpp" />
+    <ClCompile Include="XDrawController.cpp" />
+    <ClCompile Include="XGdiBasicShapesImpl.cpp" />
+    <ClCompile Include="XGdiShapeImpl.cpp" />
+    <ClCompile Include="XGlobal.cpp" />
+    <ClCompile Include="XImplStorage.cpp" />
+    <ClCompile Include="XInputProcessor.cpp" />
+    <ClCompile Include="XShape.cpp" />
+    <ClCompile Include="XShapeImpl.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Lab3.rc" />
@@ -211,6 +239,7 @@
     <None Include="ClassDiagram.cd" />
     <None Include="ClassDiagram1.cd" />
     <None Include="ClassDiagram2.cd" />
+    <None Include="ClassDiagram3.cd" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\source\repos\TableEditor\CustomTable\CustomTable.vcxproj">

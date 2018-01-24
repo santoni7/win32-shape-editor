@@ -44,6 +44,8 @@
 #define IDM_SHAPETYPE_CUBE              32786
 #define IDM_CLEAR                       32787
 #define IDM_EDITTABLE                   32790
+#define IDM_SAVE                        32791
+#define IDM_OPEN                        32792
 #define IDC_STATIC                      -1
 
 // Next default values for new objects
@@ -52,7 +54,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NO_MFC                     1
 #define _APS_NEXT_RESOURCE_VALUE        142
-#define _APS_NEXT_COMMAND_VALUE         32791
+#define _APS_NEXT_COMMAND_VALUE         32794
 #define _APS_NEXT_CONTROL_VALUE         1000
 #define _APS_NEXT_SYMED_VALUE           110
 #endif

@@ -1,0 +1,154 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="XGdiShapeImpl" Collapsed="true">
+    <Position X="10.25" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAgAAAAMBAAAAAAAAQAAAAAAkAAAAAAACDAAAgA=</HashCode>
+      <FileName>XGdiShapeImpl.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="XInputProcessor">
+    <Position X="10.25" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQAAAAAAAAAEAAAAABAAAAAAIAAAAAACAAA=</HashCode>
+      <FileName>XInputProcessor.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="XLine" Collapsed="true">
+    <Position X="2.25" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAABAAEAAAAAA=</HashCode>
+      <FileName>XBasicShapes.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="XShape">
+    <Position X="2.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAABAAAIAAEAAAAAAAAAAACAAAAADAABgBEEAAgQA=</HashCode>
+      <FileName>XShape.h</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="imp" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="XPathShapeImpl" Collapsed="true">
+    <Position X="8" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAACgAAAAAAAAAAAAAAgEAAAAAAAAAAAAA=</HashCode>
+      <FileName>XBasicShapesImpl.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="XPointImpl" Collapsed="true">
+    <Position X="6" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>XBasicShapesImpl.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="XShapeImpl" Collapsed="true">
+    <Position X="6.5" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAAAEAAAAAAABQQAAAAAAgAAAAAAAAAAAAAA=</HashCode>
+      <FileName>XShapeImpl.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="XPathShape" Collapsed="true">
+    <Position X="3.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAAAAAgAAAAAAAAAAAAAAAAAEAQBAAAAAAAAA=</HashCode>
+      <FileName>XBasicShapes.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="XPathInputProcessor" Collapsed="true">
+    <Position X="11.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACAAAAkAAgAEAAIABAARAAAABUIABACAQCAAA=</HashCode>
+      <FileName>XInputProcessor.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="XGdiPathShapeImpl" Collapsed="true">
+    <Position X="9" Y="6.5" Width="1.5" />
+    <InheritanceLine Type="XGdiShapeImpl">
+      <InheritanceModifierLabel ManuallyPlaced="true">
+        <Position X="-0.482" Y="0.089" />
+      </InheritanceModifierLabel>
+    </InheritanceLine>
+    <InheritanceLine Type="XPathShapeImpl">
+      <InheritanceModifierLabel ManuallyPlaced="true">
+        <Position X="0.131" Y="0.07" />
+      </InheritanceModifierLabel>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAECgAAAAAAAQAAAAAAgEAAAAAIACAAAAA=</HashCode>
+      <FileName>XGdiBasicShapesImpl.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="XGdiPointShapeImpl" Collapsed="true">
+    <Position X="11.25" Y="6.5" Width="1.5" />
+    <InheritanceLine Type="XPointImpl" ManuallyRouted="true">
+      <Path>
+        <Point X="6.75" Y="2.691" />
+        <Point X="6.75" Y="3.704" />
+        <Point X="5.677" Y="3.704" />
+        <Point X="5.677" Y="5.604" />
+        <Point X="8.667" Y="5.604" Type="JumpStart" />
+        <Point X="8.833" Y="5.604" Type="JumpEnd" />
+        <Point X="10.917" Y="5.604" Type="JumpStart" />
+        <Point X="11.083" Y="5.604" Type="JumpEnd" />
+        <Point X="12" Y="5.604" />
+        <Point X="12" Y="6.5" />
+      </Path>
+      <InheritanceModifierLabel ManuallyPlaced="true">
+        <Position X="0.1" Y="0.539" />
+      </InheritanceModifierLabel>
+    </InheritanceLine>
+    <InheritanceLine Type="XGdiShapeImpl">
+      <InheritanceModifierLabel ManuallyPlaced="true">
+        <Position X="0.12" Y="0.05" />
+      </InheritanceModifierLabel>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAEAAAAAAAAAQAAAAAAgAAAAAAAACAAAAA=</HashCode>
+      <FileName>XGdiBasicShapesImpl.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="XPoint" Collapsed="true">
+    <Position X="2" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAg=</HashCode>
+      <FileName>XBasicShapes.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="XRectangle" Collapsed="true">
+    <Position X="4" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAABAAEAAAAQA=</HashCode>
+      <FileName>XBasicShapes.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="XEllipse" Collapsed="true">
+    <Position X="5.75" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAUAAAAQA=</HashCode>
+      <FileName>XBasicShapes.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="XGdiDrawController">
+    <Position X="14.25" Y="0.75" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Struct Name="XGdiDrawController::EditorInfo" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>XDrawController.h</NewMemberFileName>
+        </TypeIdentifier>
+      </Struct>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AACAAQAEECQABAgABACACABYgBAAIAAAIQAAAAACBAA=</HashCode>
+      <FileName>XDrawController.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

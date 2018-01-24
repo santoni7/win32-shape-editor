@@ -6,15 +6,16 @@
 #include <typeinfo>
 #include "shape.h"
 #include <iostream>
-#define SHAPES_ARRAY_SIZE 123
-
-//Shape *SHAPES[SHAPES_ARRAY_SIZE];
-//int cur = 0;
-
-DrawController::DrawController(HWND hWnd)
-{
+DrawController* DrawController::_instance = 0;
+DrawController::DrawController() {
+}
+void DrawController::SetHWND(HWND hWnd) {
 	this->hWnd = hWnd;
 	this->inputProcessor = new TwoPointInputProcessor(hWnd);
+}
+DrawController::DrawController(HWND hWnd)
+{
+	SetHWND(hWnd);
 }
 
 DrawController::~DrawController()
@@ -30,6 +31,18 @@ int DrawController::GetShapesCount() const
 std::vector<Shape*>& DrawController::GetShapes()
 {
 	return this->shapes;
+}
+
+void DrawController::Clear()
+{
+	this->cur = 0; 
+}
+
+void DrawController::SetShapes(std::vector<Shape*> new_shapes, int count)
+{
+	this->shapes = new_shapes;
+	this->cur = count;
+	reallocate();
 }
 
 
